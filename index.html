@@ -31,3 +31,44 @@
   <div>Merry Christmas!</div>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merry Christmas</title>
+<style>
+body {
+background-color: blue;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+font-family: Arial, sans-serif;
+color: white;
+font-size: 3rem;
+}
+</style>
+</head>
+<body>
+<nav style="position: absolute; top: 20px; left: 20px;">
+<button id="homeBtn" style="background: white; color: black; padding: 10px 20px; border-radius: 8px; cursor: pointer; border: none; font-size: 1rem;">Home</button>
+<ul id="menu" style="list-style: none; padding: 0; margin: 10px 0 0 0; background: white; border-radius: 8px; position: absolute; left: 0; top: 55px; display: none; box-shadow: 0px 4px 8px rgba(0,0,0,0.2);">
+<li style="padding: 10px 20px; border-bottom: 1px solid #ccc; cursor: pointer;">Schematics</li>
+<li style="padding: 10px 20px; border-bottom: 1px solid #ccc; cursor: pointer;">Calibration Procedure</li>
+<li style="padding: 10px 20px; cursor: pointer;">PC Inventory</li>
+</ul>
+</nav>
+<script>
+const homeBtn = document.getElementById('homeBtn');
+const menu = document.getElementById('menu');
+
+
+homeBtn.addEventListener('click', () => {
+menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+});
+</script>
+<div>Merry Christmas!</div>
+</body>
+</html>
