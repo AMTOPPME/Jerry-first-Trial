@@ -187,6 +187,43 @@
         }
     }
 </script>
+    /* -------------------------------------- */
+/* --- NESTED MENU STYLING (Level 3) --- */
+/* -------------------------------------- */
+
+/* Container for the Fxx links and their submenus */
+.nested-dropdown-line {
+    position: relative; /* KEY: Defines the box the third level positions itself within */
+}
+
+/* Third-level menu content (Line 1-4) - initially hidden */
+.nested-content-line {
+    display: none; 
+    position: absolute;
+    left: 100%; /* Positions the submenu to the right of the Fxx link */
+    top: 0;
+    background-color: #e3e3e3; /* Slightly different color for distinction */
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 3; /* Ensure it floats above all other menus */
+}
+
+/* Show the third-level submenu when hovering over the Fxx container */
+.nested-dropdown-line:hover .nested-content-line {
+    display: block; 
+}
+
+/* Ensure the Fxx link (the trigger) is highlighted when its submenu is open */
+.nested-dropdown-line:hover .line-link {
+    background-color: yellow; 
+    color: black;
+}
+
+/* Style the Fxx links to match the previous level's style */
+.line-link {
+    display: block;
+    padding: 12px 16px; 
+}
 
 </body>
 </html>
