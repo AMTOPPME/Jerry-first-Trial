@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Page Navigation (Click)</title>
+    <title>Web Page Navigation (Three Levels)</title>
+    
     <style>
         /* -------------------------------------- */
         /* --- General Page Styling --- */
@@ -27,10 +28,9 @@
         }
 
         /* -------------------------------------- */
-        /* --- JAVASCRIPT DROPDOWN STYLING --- */
+        /* --- LEVEL 1 (Home Button) STYLING --- */
         /* -------------------------------------- */
 
-        /* The button/link that triggers the menu */
         .dropbtn {
             background-color: white; 
             color: black;
@@ -40,7 +40,6 @@
             cursor: pointer;
         }
 
-        /* The main dropdown container */
         .dropdown {
             position: absolute; 
             top: 10px;
@@ -48,62 +47,99 @@
             display: inline-block;
         }
         
-        /* First-level menu content (initially hidden) */
         .dropdown-content {
-            display: none; /* KEY: Hidden by default */
+            display: none; /* Hidden by default (Toggled by JS) */
             position: absolute; 
             background-color: #f9f9f9;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1; 
+            z-index: 10; /* High Z-index to float over everything */
             margin-top: 10px; 
         }
         
-        /* The class added by JavaScript to make the menu visible */
+        /* Class added by JavaScript to make the main menu visible */
         .show {
             display: block;
         }
         
-        /* Styling for all links (first and second level) */
-        .dropdown-content a, .schematics-link {
+        /* Styling for all links (Level 1, 2, and 3) */
+        .dropdown-content a {
             color: black;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
             text-align: left;
-            background-color: #f9f9f9; /* Base color for links */
+            background-color: #f9f9f9; 
         }
 
-        /* Highlight submenu items yellow on hover */
-        .dropdown-content a:hover, .schematics-link:hover {
+        /* Highlight all submenu items yellow on hover */
+        .dropdown-content a:hover {
             background-color: yellow;
             color: black;
         }
 
         /* -------------------------------------- */
-        /* --- NESTED MENU STYLING (Level 2) --- */
+        /* --- LEVEL 2 (Schematics -> Fxx) STYLING --- */
         /* -------------------------------------- */
         
-        /* Container for the Schematics item and its submenu */
+        /* Container for the Schematics link and its submenu (Fxx) */
         .nested-dropdown {
             position: relative;
         }
 
-        /* Second-level menu content (CSS-only hover trigger remains) */
+        /* Second-level menu content (Fxx list) - Opens on Schematics hover */
         .nested-content {
             display: none;
             position: absolute;
-            left: 100%; 
+            left: 100%; /* Positions the submenu to the right */
             top: 0;
             background-color: #f1f1f1;
             min-width: 150px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 2; 
+            z-index: 20; 
         }
 
-        /* Show the nested submenu when hovering over the Schematics container */
+        /* Show the Fxx submenu when hovering over the Schematics container */
         .nested-dropdown:hover .nested-content {
             display: block;
+        }
+        
+        /* Highlight Schematics link when its submenu is hovered */
+        .nested-dropdown:hover .schematics-link {
+            background-color: yellow;
+            color: black;
+        }
+        
+        /* -------------------------------------- */
+        /* --- LEVEL 3 (Fxx -> Line x) STYLING --- */
+        /* -------------------------------------- */
+
+        /* Container for the Fxx links and their submenus (Line x) */
+        .nested-dropdown-line {
+            position: relative;
+        }
+
+        /* Third-level menu content (Line 1-4) - Opens on Fxx hover */
+        .nested-content-line {
+            display: none; 
+            position: absolute;
+            left: 100%; /* Positions the submenu to the right of the Fxx link */
+            top: 0;
+            background-color: #e3e3e3; 
+            min-width: 150px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 30; 
+        }
+
+        /* Show the third-level submenu when hovering over the Fxx container */
+        .nested-dropdown-line:hover .nested-content-line {
+            display: block; 
+        }
+        
+        /* Highlight the Fxx link when its Line x submenu is open */
+        .nested-dropdown-line:hover .line-link {
+            background-color: yellow; 
+            color: black;
         }
 
     </style>
@@ -116,50 +152,50 @@
     <div id="homeDropdown" class="dropdown-content">
         
         <div class="nested-dropdown">
-            <a href="#" class="schematics-link">Schematics &gt;</a> 
+            <a href="#" class="dropdown-content a schematics-link">Schematics &gt;</a> 
             
             <div class="nested-content">
-              <div class="nested-content">
-    <div class="nested-dropdown-line">
-        <a href="#" class="line-link">F12 &gt;</a>
-        <div class="nested-content-line">
-            <a href="f12_line1.html">Line 1</a>
-            <a href="f12_line2.html">Line 2</a>
-            <a href="f12_line3.html">Line 3</a>
-            <a href="f12_line4.html">Line 4</a>
-        </div>
-    </div>
-    
-    <div class="nested-dropdown-line">
-        <a href="#" class="line-link">F16 &gt;</a>
-        <div class="nested-content-line">
-            <a href="f16_line1.html">Line 1</a>
-            <a href="f16_line2.html">Line 2</a>
-            <a href="f16_line3.html">Line 3</a>
-            <a href="f16_line4.html">Line 4</a>
-        </div>
-    </div>
+                
+                <div class="nested-dropdown-line">
+                    <a href="#" class="dropdown-content a line-link">F12 &gt;</a>
+                    <div class="nested-content-line">
+                        <a href="f12_line1.html">Line 1</a>
+                        <a href="f12_line2.html">Line 2</a>
+                        <a href="f12_line3.html">Line 3</a>
+                        <a href="f12_line4.html">Line 4</a>
+                    </div>
+                </div>
+                
+                <div class="nested-dropdown-line">
+                    <a href="#" class="dropdown-content a line-link">F16 &gt;</a>
+                    <div class="nested-content-line">
+                        <a href="f16_line1.html">Line 1</a>
+                        <a href="f16_line2.html">Line 2</a>
+                        <a href="f16_line3.html">Line 3</a>
+                        <a href="f16_line4.html">Line 4</a>
+                    </div>
+                </div>
 
-    <div class="nested-dropdown-line">
-        <a href="#" class="line-link">F13 &gt;</a>
-        <div class="nested-content-line">
-            <a href="f13_line1.html">Line 1</a>
-            <a href="f13_line2.html">Line 2</a>
-            <a href="f13_line3.html">Line 3</a>
-            <a href="f13_line4.html">Line 4</a>
-        </div>
-    </div>
+                <div class="nested-dropdown-line">
+                    <a href="#" class="dropdown-content a line-link">F13 &gt;</a>
+                    <div class="nested-content-line">
+                        <a href="f13_line1.html">Line 1</a>
+                        <a href="f13_line2.html">Line 2</a>
+                        <a href="f13_line3.html">Line 3</a>
+                        <a href="f13_line4.html">Line 4</a>
+                    </div>
+                </div>
 
-    <div class="nested-dropdown-line">
-        <a href="#" class="line-link">F201 &gt;</a>
-        <div class="nested-content-line">
-            <a href="f201_line1.html">Line 1</a>
-            <a href="f201_line2.html">Line 2</a>
-            <a href="f201_line3.html">Line 3</a>
-            <a href="f201_line4.html">Line 4</a>
-        </div>
-    </div>
-</div>
+                <div class="nested-dropdown-line">
+                    <a href="#" class="dropdown-content a line-link">F201 &gt;</a>
+                    <div class="nested-content-line">
+                        <a href="f201_line1.html">Line 1</a>
+                        <a href="f201_line2.html">Line 2</a>
+                        <a href="f201_line3.html">Line 3</a>
+                        <a href="f201_line4.html">Line 4</a>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <a href="calibration.html">Calibration Procedure</a>
@@ -173,7 +209,6 @@
 
 <script>
     function toggleDropdown() {
-        // Toggles the 'show' class on the dropdown content element
         document.getElementById("homeDropdown").classList.toggle("show");
     }
 
@@ -187,43 +222,6 @@
         }
     }
 </script>
-    /* -------------------------------------- */
-/* --- NESTED MENU STYLING (Level 3) --- */
-/* -------------------------------------- */
-
-/* Container for the Fxx links and their submenus */
-.nested-dropdown-line {
-    position: relative; /* KEY: Defines the box the third level positions itself within */
-}
-
-/* Third-level menu content (Line 1-4) - initially hidden */
-.nested-content-line {
-    display: none; 
-    position: absolute;
-    left: 100%; /* Positions the submenu to the right of the Fxx link */
-    top: 0;
-    background-color: #e3e3e3; /* Slightly different color for distinction */
-    min-width: 150px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 3; /* Ensure it floats above all other menus */
-}
-
-/* Show the third-level submenu when hovering over the Fxx container */
-.nested-dropdown-line:hover .nested-content-line {
-    display: block; 
-}
-
-/* Ensure the Fxx link (the trigger) is highlighted when its submenu is open */
-.nested-dropdown-line:hover .line-link {
-    background-color: yellow; 
-    color: black;
-}
-
-/* Style the Fxx links to match the previous level's style */
-.line-link {
-    display: block;
-    padding: 12px 16px; 
-}
 
 </body>
 </html>
