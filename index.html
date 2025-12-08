@@ -1,117 +1,27 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Merry Christmas</title>
-<style>
-/* -------------------------------------- */
-/* --- GENERAL BODY STYLING --- */
-/* -------------------------------------- */
-body {
-    background-color: blue;
-    /* Removed unnecessary centering to fix Home button position */
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: red;
-}
-
-/* -------------------------------------- */
-/* --- DROPDOWN SPECIFIC STYLING --- */
-/* -------------------------------------- */
-
-/* Styling for the button/trigger */
-.dropbtn {
-    background-color: white; 
-    color: black;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-/* The parent container, essential for positioning */
-.dropdown {
-    position: relative; /* KEY: Defines the box the content positions itself within */
-    display: inline-block;
-    /* Position the button in the top left corner */
-    position: absolute; 
-    top: 10px;
-    left: 10px;
-}
-
-/* Dropdown Content (The menu itself) */
-.dropdown-content {
-    display: none; /* KEY FIX: Hides the links initially */
-    position: absolute; /* KEY: Allows the links to float below the button */
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1; 
-}
-
-/* Styling for the links inside the menu */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-/* Class used by JavaScript to show the content */
-.show {
-    display: block; /* Overrides the 'display: none;' when the button is clicked */
-}
-
-/* Your original styles (adjusted) */
-li:hover {
-    background-color: yellow !important;
-}
-li:hover > .submenu {
-    display: block;
-}
-</style>
-</head>
-<body>
-
-<div class="dropdown">
-    <button onclick="toggleDropdown()" class="dropbtn">Home</button>
-    <div id="homeDropdown" class="dropdown-content">
-        <a href="schematics.html">Schematics</a>
-        <a href="calibration.html">Calibration Procedure</a>
-        <a href="inventory.html">PC Inventory</a>
-    </div>
-</div>
-
-<h1 style="color: white; text-align: center; 
-/* Center the Merry Christmas text */
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-margin: 0;">Merry Christmas!</h1>
-
-<script>
-    function toggleDropdown() {
-        // Toggles the 'show' class on the dropdown content element
-        document.getElementById("homeDropdown").classList.toggle("show");
-    }
-
-    // Optional: Close the dropdown if the user clicks anywhere outside of it
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdown = document.getElementById("homeDropdown");
-            if (dropdown && dropdown.classList.contains('show')) {
-                dropdown.classList.remove('show');
-            }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Page Navigation</title>
+    <style>
+        /* -------------------------------------- */
+        /* --- General Page Styling --- */
+        /* -------------------------------------- */
+        body {
+            background-color: blue;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow: hidden; /* Prevents scrollbars */
         }
-    }
-</script>
 
-</body>
-</html>
+        /* Center the "Merry Christmas" text */
+        .main-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+        }
