@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Page Navigation</title>
+    <title>Web Page Navigation (Click)</title>
     <style>
         /* -------------------------------------- */
         /* --- General Page Styling --- */
@@ -14,7 +14,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             color: white;
-            overflow: hidden; /* Prevents scrollbars */
+            overflow: hidden; 
         }
 
         /* Center the "Merry Christmas" text */
@@ -27,7 +27,7 @@
         }
 
         /* -------------------------------------- */
-        /* --- CSS-ONLY DROPDOWN STYLING --- */
+        /* --- JAVASCRIPT DROPDOWN STYLING --- */
         /* -------------------------------------- */
 
         /* The button/link that triggers the menu */
@@ -50,31 +50,32 @@
         
         /* First-level menu content (initially hidden) */
         .dropdown-content {
-            display: none;
+            display: none; /* KEY: Hidden by default */
             position: absolute; 
             background-color: #f9f9f9;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1; 
-            margin-top: 10px; /* Space between button and menu */
+            margin-top: 10px; 
         }
         
-        /* Show the main menu when hovering over the Home button container */
-        .dropdown:hover .dropdown-content {
+        /* The class added by JavaScript to make the menu visible */
+        .show {
             display: block;
         }
         
         /* Styling for all links (first and second level) */
-        .dropdown-content a {
+        .dropdown-content a, .schematics-link {
             color: black;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
             text-align: left;
+            background-color: #f9f9f9; /* Base color for links */
         }
 
         /* Highlight submenu items yellow on hover */
-        .dropdown-content a:hover {
+        .dropdown-content a:hover, .schematics-link:hover {
             background-color: yellow;
             color: black;
         }
@@ -88,19 +89,11 @@
             position: relative;
         }
 
-        /* The Schematics link itself */
-        .schematics-link {
-            /* Ensures Schematics link uses same styling as other <a> tags */
-            display: block;
-            padding: 12px 16px; 
-            background-color: #f9f9f9; /* Match menu background */
-        }
-
-        /* Second-level menu content (initially hidden) */
+        /* Second-level menu content (CSS-only hover trigger remains) */
         .nested-content {
             display: none;
             position: absolute;
-            left: 100%; /* Place it exactly to the right */
+            left: 100%; 
             top: 0;
             background-color: #f1f1f1;
             min-width: 150px;
@@ -113,19 +106,14 @@
             display: block;
         }
 
-        /* Highlight Schematics link yellow when its submenu is hovered */
-        .nested-dropdown:hover .schematics-link {
-            background-color: yellow;
-            color: black;
-        }
-
     </style>
 </head>
 <body>
-    <div class="dropdown">
-    <button class="dropbtn">Home</button>
+
+<div class="dropdown">
+    <button onclick="toggleDropdown()" class="dropbtn">Home</button>
     
-    <div class="dropdown-content">
+    <div id="homeDropdown" class="dropdown-content">
         
         <div class="nested-dropdown">
             <a href="#" class="schematics-link">Schematics &gt;</a> 
@@ -143,7 +131,26 @@
     </div>
 </div>
 
+<div class="main-content">
+    <h1>Merry Christmas!</h1>
+</div>
+
+<script>
+    function toggleDropdown() {
+        // Toggles the 'show' class on the dropdown content element
+        document.getElementById("homeDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks anywhere outside of the button
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdown = document.getElementById("homeDropdown");
+            if (dropdown && dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        }
+    }
+</script>
+
 </body>
 </html>
-
-   
