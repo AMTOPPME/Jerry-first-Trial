@@ -24,33 +24,14 @@ display: block;
 </style>
 </head>
 <body>
-<nav style="position: absolute; top: 20px; left: 20px;">
-<button id="homeBtn" style="background: white; color: black; padding: 10px 20px; border-radius: 8px; cursor: pointer; border: none; font-size: 1rem;">Home</button>
-<ul id="menu" style="list-style: none; padding: 0; margin: 10px 0 0 0; background: white; border-radius: 8px; position: absolute; left: 0; top: 55px; display: none; box-shadow: 0px 4px 8px rgba(0,0,0,0.2);">
-<li style="padding: 10px 20px; border-bottom: 1px solid #ccc; cursor: pointer; color:black; font-size:1rem;">Schematics
-<ul class="submenu" style="list-style:none; padding:0; margin:0; position:absolute; left:180px; top:0; background:white; border-radius:8px; display:none; box-shadow:0px 4px 8px rgba(0,0,0,0.2);">
-<li style="padding:10px 20px; cursor:pointer; color:orange;">Line1</li>
-<li style="padding:10px 20px; cursor:pointer; color:black;">Line2</li>
-<li style="padding:10px 20px; cursor:pointer; color:blue;">Line3</li>
-<li style="padding:10px 20px; cursor:pointer; color:red;">Line4</li>
-</ul>
-</li>
-<li style="padding: 10px 20px; border-bottom: 1px solid #ccc; cursor: pointer; color:black; font-size:1rem;">Calibration Procedure</li>
-<li style="padding: 10px 20px; cursor: pointer; color:black; font-size:1rem;">PC inventory</li>
-</ul>
-</nav>
-<script>
-const homeBtn = document.getElementById('homeBtn');
-const menu = document.getElementById('menu');
 
-
-homeBtn.addEventListener('click', () => {
-menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-});
-</script>
-<div>Merry Christmas!</div>
-</body>
-</html>
-
-
-
+  <div class="header">
+    <div class="dropdown">
+        <button onclick="toggleDropdown()" class="dropbtn">Home</button>
+        <div id="homeDropdown" class="dropdown-content">
+            <a href="schematics.html">Schematics</a>
+            <a href="calibration.html">Calibration Procedure</a>
+            <a href="inventory.html">PC Inventory</a>
+        </div>
+    </div>
+</div>
