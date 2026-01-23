@@ -6,17 +6,13 @@
     <title>Maintenance One</title>
     
     <style>
-        /* --- General Page Styling --- */
         body {
             background-color: #ffeef2;
-            min-height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            color: black;
-            overflow-x: hidden;
         }
 
-        /* --- RESPONSIVE WHITEBOARD HEADER --- */
+        /* --- WHITEBOARD HEADER --- */
         .whiteboard-header {
             background-color: white;
             margin: 10px;
@@ -24,63 +20,89 @@
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
         }
-
-        .header-left { flex: 1; min-width: 200px; }
         .header-left h2 { margin: 0; font-size: 20px; text-transform: uppercase; }
         .header-left p { margin: 5px 0; color: #888; font-size: 13px; }
+        .header-center { text-align: center; flex-grow: 1; }
+        .quote-label { font-size: 9px; color: #aaa; text-transform: uppercase; }
+        .quote-text { color: #007bff; font-style: italic; font-size: 14px; }
+        .header-right { font-size: 11px; color: #666; text-align: right; border-left: 1px solid #eee; padding-left: 15px; }
 
-        .header-center { flex: 2; text-align: center; margin: 10px 0; min-width: 250px; }
-        .header-center .quote-label { font-size: 9px; color: #aaa; text-transform: uppercase; }
-        .header-center .quote-text { color: #007bff; font-style: italic; font-size: 14px; line-height: 1.4; }
-
-        .header-right { 
-            flex: 1; font-size: 11px; color: #666; text-align: right; min-width: 150px;
-            border-left: 1px solid #eee; padding-left: 15px;
+        /* --- THE "OLD STYLE" CASCADING MENU --- */
+        .dropdown {
+            margin: 20px;
+            position: relative;
+            display: inline-block;
         }
 
-        /* --- NAVIGATION MENU --- */
-        .dropdown { margin: 10px 20px; display: inline-block; }
         .dropbtn {
-            background-color: white; color: black; padding: 12px 24px;
-            font-size: 16px; border: none; cursor: pointer; font-weight: bold;
-            border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
         }
-        
+
+        /* Main Dropdown Level 1 */
         .dropdown-content {
-            display: none; position: absolute; background-color: #f9f9f9;
-            min-width: 180px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 100; border-radius: 5px;
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 180px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1000;
         }
-        
-        .show { display: block; }
-        .dropdown-content a { color: black; padding: 12px 16px; text-decoration: none; display: block; }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+
         .dropdown-content a:hover { background-color: yellow; }
 
-        /* FIXED: Nested Menus alignment for Desktop (Cascading Style) */
-        .nested-dropdown, .nested-dropdown-line { position: relative; }
-        
-        .nested-content, .nested-content-line {
-            display: none; position: absolute; left: 100%; top: 0;
-            background-color: #f1f1f1; min-width: 160px;
+        /* Cascading Logic for Level 2 & 3 */
+        .nested { position: relative; }
+
+        /* Level 2 (F12, F13...) */
+        .nested-content {
+            display: none;
+            position: absolute;
+            left: 100%; /* Exact alignment to the right */
+            top: 0;      /* Exact alignment to the top of parent */
+            background-color: white;
+            min-width: 180px;
             box-shadow: 4px 0px 8px rgba(0,0,0,0.1);
         }
 
-        .nested-dropdown:hover > .nested-content,
-        .nested-dropdown-line:hover > .nested-content-line { display: block; }
+        /* Level 3 (Line 1, Line 2...) */
+        .nested-content-line {
+            display: none;
+            position: absolute;
+            left: 100%; /* Pops out right of Level 2 */
+            top: 0;
+            background-color: white;
+            min-width: 150px;
+            box-shadow: 4px 0px 8px rgba(0,0,0,0.1);
+        }
 
-        /* --- MOBILE SPECIFIC ADJUSTMENTS --- */
+        /* Hover Triggers */
+        .show { display: block; }
+        .nested:hover > .nested-content { display: block; }
+        .nested-line:hover > .nested-content-line { display: block; }
+
+        /* --- MOBILE ADJUSTMENTS --- */
         @media screen and (max-width: 768px) {
-            .whiteboard-header { flex-direction: column; text-align: center; }
-            .header-right { border-left: none; border-top: 1px solid #eee; padding: 10px 0 0 0; width: 100%; text-align: center; }
-            
-            /* Mobile Menu: Stacks instead of popping side-ways */
-            .nested-content, .nested-content-line { position: static; width: 100%; box-shadow: none; border-left: 3px solid #007bff; }
-            .dropdown { width: 90%; }
-            .dropbtn { width: 100%; }
+            .whiteboard-header { flex-direction: column; }
+            .header-right { border-left: none; border-top: 1px solid #eee; padding-top: 10px; margin-top: 10px; text-align: center; }
+            .nested-content, .nested-content-line { position: static; width: 100%; border-left: 4px solid #007bff; }
         }
     </style>
 </head>
@@ -91,35 +113,34 @@
             <h2>Maintenance One</h2>
             <p>Make an easy life.</p>
         </div>
-
         <div class="header-center">
             <span class="quote-label">Quote of the Celebrities</span>
-            <div class="quote-text" id="random-quote">
-                "The only way to do great work is to love what you do." — Steve Jobs
+            <div id="random-quote" class="quote-text">
+                "The only way to do great work is to love what you do." — Steve Jobs [cite: 5]
             </div>
         </div>
-
         <div class="header-right">
-            <div><span style="color:#aaa">Version</span> <span style="color:#007bff">1.0.0</span></div>
-            <div><span style="color:#aaa">Managed by</span> ME Team</div>
-            <div><span style="color:#aaa">Designed by</span> Benjamin Lin</div>
-            <div><span style="color:#aaa">Modified on</span> 01/22/2026</div>
+            <div>Version <span style="color:#007bff">1.0.0</span></div>
+            <div>Managed by ME Team</div>
+            <div>Designed by Benjamin Lin</div>
+            <div>Modified on 01/23/2026</div>
         </div>
     </div>
 
     <div class="dropdown">
-        <button onclick="toggleDropdown()" class="dropbtn">Home &#9662;</button>
-        <div id="homeDropdown" class="dropdown-content">
-            <div class="nested-dropdown">
-                <a href="#">Schematics &gt;</a> 
+        <button onclick="toggleMenu()" class="dropbtn">Home &#9662;</button>
+        <div id="mainMenu" class="dropdown-content">
+            <div class="nested">
+                <a href="#">Schematics ></a>
                 <div class="nested-content">
-                    <div class="nested-dropdown-line">
-                        <a href="#">01 F12 &gt;</a>
+                    <div class="nested-line">
+                        <a href="#">01 F12 ></a>
                         <div class="nested-content-line">
                             <a href="Line-1-F12-Schematic.pdf">Line 1</a>
                             <a href="Line-2-F12-Schematic.pdf">Line 2</a>
                         </div>
                     </div>
+                    <a href="#">02 F13 ></a>
                 </div>
             </div>
             <a href="calibration.html">Calibration Procedure</a>
@@ -128,41 +149,29 @@
     </div>
 
     <script>
-        // Quotes pulled directly from your document
         const quotes = [
-            "“The only way to do great work is to love what you do.” — Steve Jobs",
-            "“It always seems impossible until it’s done.” — Nelson Mandela",
-            "“Be the change that you wish to see in the world.” — Mahatma Gandhi",
-            "“Success is not the key to happiness. Happiness is the key to success.” — Albert Schweitzer",
-            "“Don’t watch the clock; do what it does. Keep going.” — Sam Levenson",
-            "“Success is no accident. It is hard work, perseverance, learning, studying, sacrifice...” — Pele",
-            "“The difference between the impossible and the possible lies in a person’s determination.” — Tommy Lasorda",
-            "“Authenticity is magnetic. People are drawn to those who are unapologetically themselves.” — Alicia Keys",
-            "“Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.” — Christian D. Larson"
+            "“Success is not the key to happiness. Happiness is the key to success.” — Albert Schweitzer [cite: 4]",
+            "“It always seems impossible until it’s done.” — Nelson Mandela [cite: 9]",
+            "“Be the change that you wish to see in the world.” — Mahatma Gandhi [cite: 12]",
+            "“Don’t watch the clock; do what it does. Keep going.” — Sam Levenson [cite: 14]",
+            "“Success is no accident. It is hard work, perseverance...” — Pele [cite: 21]",
+            "“The difference between the impossible and the possible lies in determination.” — Tommy Lasorda [cite: 25]",
+            "“Authenticity is magnetic. People are drawn to those who are themselves.” — Alicia Keys [cite: 98]"
         ];
 
         function updateQuote() {
-            const quoteElement = document.getElementById("random-quote");
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            quoteElement.innerHTML = quotes[randomIndex];
+            const el = document.getElementById("random-quote");
+            el.innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
         }
+        setInterval(updateQuote, 120000);
 
-        // Rotate quote every 2 minutes (120,000 milliseconds)
-        setInterval(updateQuote, 120000); 
-
-        function toggleDropdown() {
-            document.getElementById("homeDropdown").classList.toggle("show");
+        function toggleMenu() {
+            document.getElementById("mainMenu").classList.toggle("show");
         }
 
         window.onclick = function(event) {
             if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
+                document.getElementById("mainMenu").classList.remove("show");
             }
         }
     </script>
