@@ -3,73 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Page Navigation (Three Levels)</title>
+    <title>Maintenance One</title>
     
     <style>
-        /* Override the hover effect for the disabled link */
-.disabled-link:hover,
-.disabled-link:focus {
-    background-color: transparent !important; /* Removes the yellow background */
-    color: #6c757d !important;              /* Keeps the text gray */
-}
         /* -------------------------------------- */
-        /* --- General Page & Text Styling --- */
+        /* --- General Page Styling --- */
         /* -------------------------------------- */
         body {
-            background-color: blue;
+            background-color: #ffeef2; /* Light Pink Background */
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            color: white;
+            color: black;
             overflow: hidden; 
         }
 
-        /* Center the "Merry Christmas" text */
-        .main-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem;
-            text-align: center;
+        /* -------------------------------------- */
+        /* --- TOP WHITEBOARD HEADER STYLING --- */
+        /* -------------------------------------- */
+        .whiteboard-header {
+            background-color: white;
+            margin: 15px;
+            padding: 15px 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
         }
+
+        /* Left Side: Logo/Title */
+        .header-left h2 {
+            margin: 0;
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .header-left p {
+            margin: 5px 0 0;
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Center: Quote */
+        .header-center {
+            text-align: center;
+            flex: 1;
+            margin: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header-center .quote-label {
+            font-size: 10px;
+            color: #aaa;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .header-center .quote-text {
+            color: #007bff; /* Blue text */
+            font-style: italic;
+            font-size: 14px;
+            max-width: 600px;
+            line-height: 1.4;
+        }
+
+        /* Right Side: Version Info */
+        .header-right {
+            font-size: 11px;
+            color: #666;
+            text-align: right;
+            border-left: 1px solid #eee;
+            padding-left: 20px;
+            min-width: 150px;
+        }
+        .info-row { margin-bottom: 4px; }
+        .info-label { color: #aaa; margin-right: 5px; }
 
         /* -------------------------------------- */
         /* --- LEVEL 1 (Home Button) STYLING --- */
         /* -------------------------------------- */
 
+        .dropdown {
+            position: absolute; 
+            top: 140px; /* Moved down to sit below the header */
+            left: 20px;
+            display: inline-block;
+        }
+
         .dropbtn {
             background-color: white; 
             color: black;
-            padding: 10px;
+            padding: 10px 20px;
             font-size: 16px;
             border: none;
             cursor: pointer;
-        }
-
-        .dropdown {
-            position: absolute; 
-            top: 10px;
-            left: 10px;
-            display: inline-block;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Added shadow to match header style */
+            border-radius: 5px;
         }
         
         .dropdown-content {
-            display: none; /* Hidden by default (Toggled by JS) */
+            display: none; 
             position: absolute; 
             background-color: #f9f9f9;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 10; 
-            margin-top: 10px; 
+            margin-top: 5px; 
+            border-radius: 5px;
         }
         
-        /* Class added by JavaScript to make the main menu visible */
-        .show {
-            display: block;
-        }
+        .show { display: block; }
         
-        /* Styling for all links (Level 1, 2, and 3) */
         .dropdown-content a {
             color: black;
             padding: 12px 16px;
@@ -77,26 +127,25 @@
             display: block;
             text-align: left;
             background-color: #f9f9f9; 
-            white-space: nowrap; /* Prevents long text from wrapping */
+            white-space: nowrap;
         }
 
-        /* Highlight all submenu items yellow on hover */
         .dropdown-content a:hover {
             background-color: yellow;
             color: black;
         }
 
+        /* Override the hover effect for the disabled link */
+        .disabled-link { color: #ccc !important; pointer-events: none; }
+        .disabled-link:hover { background-color: transparent !important; }
+
         /* -------------------------------------- */
         /* --- NESTED STYLING (Levels 2 & 3) --- */
         /* -------------------------------------- */
         
-        /* Container for Level 2 (Schematics) and Level 3 (Fxx) */
-        .nested-dropdown,
-        .nested-dropdown-line {
-            position: relative;
-        }
+        .nested-dropdown, .nested-dropdown-line { position: relative; }
         
-        /* Level 2 Menu Content (Fxx List) */
+        /* Level 2 Menu Content */
         .nested-content {
             display: none;
             position: absolute;
@@ -108,12 +157,9 @@
             z-index: 20; 
         }
 
-        /* Show Level 2 when hovering over Schematics container */
-        .nested-dropdown:hover > .nested-content {
-            display: block;
-        }
+        .nested-dropdown:hover > .nested-content { display: block; }
 
-        /* Level 3 Menu Content (Line x List) */
+        /* Level 3 Menu Content */
         .nested-content-line {
             display: none; 
             position: absolute;
@@ -125,20 +171,10 @@
             z-index: 30; 
         }
 
-        /* Show Level 3 when hovering over Fxx container */
-        .nested-dropdown-line:hover > .nested-content-line {
-            display: block; 
-        }
+        .nested-dropdown-line:hover > .nested-content-line { display: block; }
         
-        /* Ensures the link triggering the submenu is styled correctly */
-        .schematics-link, .line-link {
-            /* Ensures these links are treated as anchors, not containers, 
-               but still respond to hover */
-            display: block;
-            padding: 12px 16px; 
-        }
+        .schematics-link, .line-link { display: block; padding: 12px 16px; }
 
-        /* Highlight Schematics and Fxx links when their submenus are open */
         .nested-dropdown:hover > .schematics-link,
         .nested-dropdown-line:hover > .line-link {
             background-color: yellow;
@@ -149,85 +185,102 @@
 </head>
 <body>
 
-<div class="dropdown">
-    <button onclick="toggleDropdown()" class="dropbtn">Home</button>
-    
-    <div id="homeDropdown" class="dropdown-content">
+    <div class="whiteboard-header">
         
-        <div class="nested-dropdown">
-            <a href="#" class="schematics-link">Schematics &gt;</a> 
-            
-            <div class="nested-content">
-                
-                <div class="nested-dropdown-line">
-                    <a href="#" class="line-link">01 F12 &gt;</a>
-                    <div class="nested-content-line">
-                        <a href="Line-1-F12-Schematic.pdf">Line 1</a>
-                        <a href="Line-2-F12-Schematic.pdf">Line 2</a>
-                        <a href="Line-3-F12-Schematic.pdf">Line 3</a>
-                        <a href="Line-4-F12-Schematic.pdf">Line 4</a>
-                    </div>
-                </div>
-                
-                                <div class="nested-dropdown-line">
-                    <a href="#" class="line-link">02 F13 &gt;</a>
-                    <div class="nested-content-line">
-                        <a href="Line-1-F13-Schematic.pdf">Line 1</a>
-                        <a href="Line-2-F13-Schematic.pdf">Line 2</a>
-                        <a href="Line-3-F13-Schematic.pdf">Line 3</a>
-                        <a class="disabled-link">Line 4</a>
-                    </div>
-                </div>
+        <div class="header-left">
+            <h2>Maintenance One</h2>
+            <p>Make an easy life.</p>
+        </div>
 
-                <div class="nested-dropdown-line">
-                    <a href="#" class="line-link">03 F16 &gt;</a>
-                    <div class="nested-content-line">
-                        <a class="disabled-link">Line 1</a>
-                        <a class="disabled-link">Line 2</a>
-                        <a class="disabled-link">Line 3</a>
-                        <a class="disabled-link">Line 4</a>
-                    </div>
-                </div>
+        <div class="header-center">
+            <span class="quote-label">Quote of the Celebrities</span>
+            <div class="quote-text">
+                "Success is not final, failure is not fatal: it is the courage to continue that counts."
+                <br>
+                — Winston Churchill
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="info-row"><span class="info-label">Version</span> <span style="color: #007bff;">1.0.0</span></div>
+            <div class="info-row"><span class="info-label">Managed by</span> ME Team</div>
+            <div class="info-row"><span class="info-label">Designed by</span> Benjamin Lin</div>
+            <div class="info-row"><span class="info-label">Modified on</span> 01/12/2026</div>
+        </div>
+
+    </div>
+
+    <div class="dropdown">
+        <button onclick="toggleDropdown()" class="dropbtn">Home &#9662;</button>
+        
+        <div id="homeDropdown" class="dropdown-content">
             
-                <div class="nested-dropdown-line">
-                    <a href="#" class="line-link">04 F201 &gt;</a>
-                    <div class="nested-content-line">
-                        <a class="disabled-link">Line 1</a>
-                        <a href="Line-2-F201-Schematic.pdf">Line 2</a>
-                        <a class="disabled-link">Line 3</a>
-                        <a class="disabled-link">Line 4</a>
+            <div class="nested-dropdown">
+                <a href="#" class="schematics-link">Schematics &gt;</a> 
+                
+                <div class="nested-content">
+                    
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">01 F12 &gt;</a>
+                        <div class="nested-content-line">
+                            <a href="Line-1-F12-Schematic.pdf">Line 1</a>
+                            <a href="Line-2-F12-Schematic.pdf">Line 2</a>
+                            <a href="Line-3-F12-Schematic.pdf">Line 3</a>
+                            <a href="Line-4-F12-Schematic.pdf">Line 4</a>
+                        </div>
+                    </div>
+                    
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">02 F13 &gt;</a>
+                        <div class="nested-content-line">
+                            <a href="Line-1-F13-Schematic.pdf">Line 1</a>
+                            <a href="Line-2-F13-Schematic.pdf">Line 2</a>
+                            <a href="Line-3-F13-Schematic.pdf">Line 3</a>
+                            <a class="disabled-link">Line 4</a>
+                        </div>
+                    </div>
+
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">03 F16 &gt;</a>
+                        <div class="nested-content-line">
+                            <a class="disabled-link">Line 1</a>
+                            <a class="disabled-link">Line 2</a>
+                            <a class="disabled-link">Line 3</a>
+                            <a class="disabled-link">Line 4</a>
+                        </div>
+                    </div>
+                
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">04 F201 &gt;</a>
+                        <div class="nested-content-line">
+                            <a class="disabled-link">Line 1</a>
+                            <a href="Line-2-F201-Schematic.pdf">Line 2</a>
+                            <a class="disabled-link">Line 3</a>
+                            <a class="disabled-link">Line 4</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            <a href="calibration.html">Calibration Procedure</a>
+            <a href="inventory.html">PC Inventory</a>
         </div>
-        
-        <a href="calibration.html">Calibration Procedure</a>
-        <a href="inventory.html">PC Inventory</a>
     </div>
-</div>
 
-<div class="main-content">
-    <h1>Merry Christmas!</h1>
-</div>
+    <script>
+        function toggleDropdown() {
+            document.getElementById("homeDropdown").classList.toggle("show");
+        }
 
-<script>
-    function toggleDropdown() {
-        // Toggles the 'show' class on the main dropdown content
-        document.getElementById("homeDropdown").classList.toggle("show");
-    }
-
-    // Close the dropdown if the user clicks anywhere outside of the button
-    window.onclick = function(event) {
-        // Check if the click target is NOT the Home button
-        if (!event.target.matches('.dropbtn')) {
-            var dropdown = document.getElementById("homeDropdown");
-            if (dropdown && dropdown.classList.contains('show')) {
-                dropdown.classList.remove('show');
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdown = document.getElementById("homeDropdown");
+                if (dropdown && dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
             }
         }
-    }
-</script>
+    </script>
 
 </body>
 </html>
-
