@@ -6,147 +6,88 @@
     <title>Maintenance One</title>
     
     <style>
-        /* -------------------------------------- */
         /* --- General Page Styling --- */
-        /* -------------------------------------- */
         body {
-            background-color: #ffeef2; /* Light Pink Background */
-            height: 100vh;
+            background-color: #ffeef2;
+            min-height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
             color: black;
-            overflow: hidden; 
+            overflow-x: hidden; /* Prevent side-scrolling on mobile */
         }
 
-        /* -------------------------------------- */
-        /* --- TOP WHITEBOARD HEADER STYLING --- */
-        /* -------------------------------------- */
+        /* --- RESPONSIVE WHITEBOARD HEADER --- */
         .whiteboard-header {
             background-color: white;
-            margin: 15px;
-            padding: 15px 30px;
-            border-radius: 20px;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             display: flex;
+            flex-wrap: wrap; /* Allows items to wrap on mobile */
             justify-content: space-between;
             align-items: center;
-            height: 80px;
         }
 
-        /* Left Side: Logo/Title */
-        .header-left h2 {
-            margin: 0;
-            color: #333;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .header-left p {
-            margin: 5px 0 0;
-            color: #888;
-            font-size: 14px;
-        }
+        .header-left { flex: 1; min-width: 200px; }
+        .header-left h2 { margin: 0; font-size: 20px; text-transform: uppercase; }
+        .header-left p { margin: 5px 0; color: #888; font-size: 13px; }
 
-        /* Center: Quote */
-        .header-center {
-            text-align: center;
-            flex: 1;
-            margin: 0 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .header-center { 
+            flex: 2; 
+            text-align: center; 
+            margin: 10px 0; 
+            min-width: 250px; 
         }
-        .header-center .quote-label {
-            font-size: 10px;
-            color: #aaa;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-        .header-center .quote-text {
-            color: #007bff; /* Blue text */
-            font-style: italic;
-            font-size: 14px;
-            max-width: 600px;
-            line-height: 1.4;
-        }
+        .header-center .quote-label { font-size: 9px; color: #aaa; text-transform: uppercase; }
+        .header-center .quote-text { color: #007bff; font-style: italic; font-size: 14px; line-height: 1.4; }
 
-        /* Right Side: Version Info */
-        .header-right {
-            font-size: 11px;
-            color: #666;
-            text-align: right;
-            border-left: 1px solid #eee;
-            padding-left: 20px;
+        .header-right { 
+            flex: 1; 
+            font-size: 11px; 
+            color: #666; 
+            text-align: right; 
             min-width: 150px;
+            border-left: 1px solid #eee;
+            padding-left: 15px;
         }
-        .info-row { margin-bottom: 4px; }
-        .info-label { color: #aaa; margin-right: 5px; }
 
-        /* -------------------------------------- */
-        /* --- LEVEL 1 (Home Button) STYLING --- */
-        /* -------------------------------------- */
-
+        /* --- NAVIGATION MENU --- */
         .dropdown {
-            position: absolute; 
-            top: 140px; /* Moved down to sit below the header */
-            left: 20px;
+            margin: 10px 20px;
             display: inline-block;
         }
 
         .dropbtn {
             background-color: white; 
             color: black;
-            padding: 10px 20px;
+            padding: 12px 24px;
             font-size: 16px;
             border: none;
             cursor: pointer;
             font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Added shadow to match header style */
-            border-radius: 5px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .dropdown-content {
             display: none; 
             position: absolute; 
             background-color: #f9f9f9;
-            min-width: 160px;
+            min-width: 180px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 10; 
-            margin-top: 5px; 
+            z-index: 100; 
             border-radius: 5px;
         }
         
         .show { display: block; }
-        
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-            background-color: #f9f9f9; 
-            white-space: nowrap;
-        }
-
-        .dropdown-content a:hover {
-            background-color: yellow;
-            color: black;
-        }
-
-        /* Override the hover effect for the disabled link */
+        .dropdown-content a { color: black; padding: 12px 16px; text-decoration: none; display: block; }
+        .dropdown-content a:hover { background-color: yellow; }
         .disabled-link { color: #ccc !important; pointer-events: none; }
-        .disabled-link:hover { background-color: transparent !important; }
 
-        /* -------------------------------------- */
-        /* --- NESTED STYLING (Levels 2 & 3) --- */
-        /* -------------------------------------- */
-        
+        /* Nested Menus */
         .nested-dropdown, .nested-dropdown-line { position: relative; }
-        
-        /* Level 2 Menu Content */
-        .nested-content {
+        .nested-content, .nested-content-line {
             display: none;
             position: absolute;
             left: 100%; 
@@ -154,158 +95,116 @@
             background-color: #f1f1f1;
             min-width: 150px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 20; 
         }
-
-        .nested-dropdown:hover > .nested-content { display: block; }
-
-        /* Level 3 Menu Content */
-        .nested-content-line {
-            display: none; 
-            position: absolute;
-            left: 100%; 
-            top: 0;
-            background-color: #e3e3e3; 
-            min-width: 150px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 30; 
-        }
-
+        .nested-dropdown:hover > .nested-content,
         .nested-dropdown-line:hover > .nested-content-line { display: block; }
-        
-        .schematics-link, .line-link { display: block; padding: 12px 16px; }
 
-        .nested-dropdown:hover > .schematics-link,
-        .nested-dropdown-line:hover > .line-link {
-            background-color: yellow;
-            color: black;
+        /* --- MOBILE SPECIFIC ADJUSTMENTS --- */
+        @media screen and (max-width: 768px) {
+            .whiteboard-header {
+                flex-direction: column; /* Stack sections vertically */
+                text-align: center;
+            }
+            .header-right {
+                border-left: none;
+                border-top: 1px solid #eee;
+                padding-left: 0;
+                padding-top: 10px;
+                text-align: center;
+                width: 100%;
+            }
+            .header-left { text-align: center; width: 100%; }
+            
+            /* Make menu easier to tap on mobile */
+            .nested-content, .nested-content-line {
+                position: static; /* Dropdowns appear below instead of to the side */
+                width: 100%;
+                box-shadow: none;
+                border-left: 3px solid #007bff;
+            }
+            .dropdown { width: 90%; }
+            .dropbtn { width: 100%; }
         }
-
     </style>
 </head>
 <body>
 
     <div class="whiteboard-header">
-        
         <div class="header-left">
             <h2>Maintenance One</h2>
             <p>Make an easy life.</p>
         </div>
 
         <div class="header-center">
-    <span class="quote-label">Quote of the Celebrities</span>
-    <div class="quote-text" id="random-quote">
-        "The only way to do great work is to love what you do." — Steve Jobs
-    </div>
-</div>
-
-        <div class="header-right">
-            <div class="info-row"><span class="info-label">Version</span> <span style="color: #007bff;">1.0.0</span></div>
-            <div class="info-row"><span class="info-label">Managed by</span> ME Team</div>
-            <div class="info-row"><span class="info-label">Designed by</span> Benjamin Lin</div>
-            <div class="info-row"><span class="info-label">Modified on</span> 01/12/2026</div>
+            <span class="quote-label">Quote of the Celebrities</span>
+            <div class="quote-text" id="random-quote">
+                "The only way to do great work is to love what you do." — Steve Jobs
+            </div>
         </div>
 
+        <div class="header-right">
+            <div><span style="color:#aaa">Version</span> <span style="color:#007bff">1.0.0</span></div>
+            <div><span style="color:#aaa">Managed by</span> ME Team</div>
+            <div><span style="color:#aaa">Designed by</span> Benjamin Lin</div>
+            <div><span style="color:#aaa">Modified on</span> 01/12/2026</div>
+        </div>
     </div>
 
     <div class="dropdown">
         <button onclick="toggleDropdown()" class="dropbtn">Home &#9662;</button>
-        
         <div id="homeDropdown" class="dropdown-content">
-            
             <div class="nested-dropdown">
                 <a href="#" class="schematics-link">Schematics &gt;</a> 
-                
                 <div class="nested-content">
-                    
                     <div class="nested-dropdown-line">
                         <a href="#" class="line-link">01 F12 &gt;</a>
                         <div class="nested-content-line">
                             <a href="Line-1-F12-Schematic.pdf">Line 1</a>
                             <a href="Line-2-F12-Schematic.pdf">Line 2</a>
-                            <a href="Line-3-F12-Schematic.pdf">Line 3</a>
-                            <a href="Line-4-F12-Schematic.pdf">Line 4</a>
-                        </div>
-                    </div>
-                    
-                    <div class="nested-dropdown-line">
-                        <a href="#" class="line-link">02 F13 &gt;</a>
-                        <div class="nested-content-line">
-                            <a href="Line-1-F13-Schematic.pdf">Line 1</a>
-                            <a href="Line-2-F13-Schematic.pdf">Line 2</a>
-                            <a href="Line-3-F13-Schematic.pdf">Line 3</a>
-                            <a class="disabled-link">Line 4</a>
-                        </div>
-                    </div>
-
-                    <div class="nested-dropdown-line">
-                        <a href="#" class="line-link">03 F16 &gt;</a>
-                        <div class="nested-content-line">
-                            <a class="disabled-link">Line 1</a>
-                            <a class="disabled-link">Line 2</a>
-                            <a class="disabled-link">Line 3</a>
-                            <a class="disabled-link">Line 4</a>
-                        </div>
-                    </div>
-                
-                    <div class="nested-dropdown-line">
-                        <a href="#" class="line-link">04 F201 &gt;</a>
-                        <div class="nested-content-line">
-                            <a class="disabled-link">Line 1</a>
-                            <a href="Line-2-F201-Schematic.pdf">Line 2</a>
-                            <a class="disabled-link">Line 3</a>
-                            <a class="disabled-link">Line 4</a>
                         </div>
                     </div>
                 </div>
             </div>
-            
             <a href="calibration.html">Calibration Procedure</a>
             <a href="inventory.html">PC Inventory</a>
         </div>
     </div>
 
     <script>
+        // List from your document
+        const quotes = [
+            "“The only way to do great work is to love what you do.” — Steve Jobs",
+            "“It always seems impossible until it’s done.” — Nelson Mandela",
+            "“Be the change that you wish to see in the world.” — Mahatma Gandhi",
+            "“Success is not the key to happiness. Happiness is the key to success.” — Albert Schweitzer",
+            "“Don’t watch the clock; do what it does. Keep going.” — Sam Levenson",
+            "“Be yourself; everyone else is already taken.” — Oscar Wilde",
+            "“Believe you can and you’re halfway there.” — Theodore Roosevelt"
+        ];
+
+        function updateQuote() {
+            const quoteElement = document.getElementById("random-quote");
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteElement.innerHTML = quotes[randomIndex];
+        }
+
+        setInterval(updateQuote, 120000); // 2 minutes
+
         function toggleDropdown() {
             document.getElementById("homeDropdown").classList.toggle("show");
         }
 
         window.onclick = function(event) {
             if (!event.target.matches('.dropbtn')) {
-                var dropdown = document.getElementById("homeDropdown");
-                if (dropdown && dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
                 }
             }
         }
     </script>
-
 </body>
-
-    <script>
-    // Quotes extracted from your document
-    const quotes = [
-        "“The only way to do great work is to love what you do.” — Steve Jobs",
-        "“It always seems impossible until it’s done.” — Nelson Mandela",
-        "“Be the change that you wish to see in the world.” — Mahatma Gandhi",
-        "“Success is not the key to happiness. Happiness is the key to success.” — Albert Schweitzer",
-        "“Don’t watch the clock; do what it does. Keep going.” — Sam Levenson",
-        "“Be yourself; everyone else is already taken.” — Oscar Wilde",
-        "“The greatest glory in living lies not in never falling, but in rising every time we fall.” — Nelson Mandela",
-        "“In the middle of difficulty lies opportunity.” — Albert Einstein",
-        "“I’ve learned that people will forget what you said... but people will never forget how you made them feel.” — Maya Angelou"
-    ];
-
-    function updateQuote() {
-        const quoteElement = document.getElementById("random-quote");
-        // Pick a random number based on the length of our list
-        const randomIndex = Math.floor(Math.random() * quotes.length);
-        // Update the text on the screen
-        quoteElement.innerHTML = quotes[randomIndex];
-    }
-
-    // Run the function every 2 minutes (120,000 milliseconds)
-    setInterval(updateQuote, 120000);
-</script>
-    
 </html>
