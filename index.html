@@ -283,4 +283,31 @@
     </script>
 
 </body>
+
+    <script>
+    // Quotes extracted from your document
+    const quotes = [
+        "“The only way to do great work is to love what you do.” — Steve Jobs",
+        "“It always seems impossible until it’s done.” — Nelson Mandela",
+        "“Be the change that you wish to see in the world.” — Mahatma Gandhi",
+        "“Success is not the key to happiness. Happiness is the key to success.” — Albert Schweitzer",
+        "“Don’t watch the clock; do what it does. Keep going.” — Sam Levenson",
+        "“Be yourself; everyone else is already taken.” — Oscar Wilde",
+        "“The greatest glory in living lies not in never falling, but in rising every time we fall.” — Nelson Mandela",
+        "“In the middle of difficulty lies opportunity.” — Albert Einstein",
+        "“I’ve learned that people will forget what you said... but people will never forget how you made them feel.” — Maya Angelou"
+    ];
+
+    function updateQuote() {
+        const quoteElement = document.getElementById("random-quote");
+        // Pick a random number based on the length of our list
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        // Update the text on the screen
+        quoteElement.innerHTML = quotes[randomIndex];
+    }
+
+    // Run the function every 2 minutes (120,000 milliseconds)
+    setInterval(updateQuote, 120000);
+</script>
+    
 </html>
