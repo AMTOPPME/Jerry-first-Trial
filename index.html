@@ -60,42 +60,27 @@
         .dropdown-content a { color: black; padding: 12px 16px; text-decoration: none; display: block; }
         .dropdown-content a:hover { background-color: yellow; }
 
-        /* FIXED: Nested Menus alignment for Desktop */
+        /* FIXED: Nested Menus alignment for Desktop (Cascading Style) */
         .nested-dropdown, .nested-dropdown-line { position: relative; }
         
         .nested-content, .nested-content-line {
             display: none; position: absolute; left: 100%; top: 0;
-            background-color: #f1f1f1; min-width: 150px;
+            background-color: #f1f1f1; min-width: 160px;
             box-shadow: 4px 0px 8px rgba(0,0,0,0.1);
         }
 
         .nested-dropdown:hover > .nested-content,
         .nested-dropdown-line:hover > .nested-content-line { display: block; }
 
-        /* --- POLICY SECTION --- */
-        .policy-container {
-            display: flex; justify-content: center; align-items: center;
-            margin: 40px auto; padding: 20px; max-width: 1000px;
-        }
-        .policy-card {
-            background: white; padding: 30px; border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;
-            border-top: 5px solid #007bff; max-width: 500px;
-        }
-        .panther-img { height: 250px; width: auto; }
-
         /* --- MOBILE SPECIFIC ADJUSTMENTS --- */
         @media screen and (max-width: 768px) {
             .whiteboard-header { flex-direction: column; text-align: center; }
             .header-right { border-left: none; border-top: 1px solid #eee; padding: 10px 0 0 0; width: 100%; text-align: center; }
             
-            /* Mobile Menu: Stack items instead of popping to the side */
+            /* Mobile Menu: Stacks instead of popping side-ways */
             .nested-content, .nested-content-line { position: static; width: 100%; box-shadow: none; border-left: 3px solid #007bff; }
             .dropdown { width: 90%; }
             .dropbtn { width: 100%; }
-
-            .policy-container { flex-direction: column; }
-            .panther-img { height: 150px; margin: 10px 0; }
         }
     </style>
 </head>
@@ -110,7 +95,7 @@
         <div class="header-center">
             <span class="quote-label">Quote of the Celebrities</span>
             <div class="quote-text" id="random-quote">
-                "The only way to do great work is to love what you do." — Steve Jobs 
+                "The only way to do great work is to love what you do." — Steve Jobs
             </div>
         </div>
 
@@ -118,7 +103,7 @@
             <div><span style="color:#aaa">Version</span> <span style="color:#007bff">1.0.0</span></div>
             <div><span style="color:#aaa">Managed by</span> ME Team</div>
             <div><span style="color:#aaa">Designed by</span> Benjamin Lin</div>
-            <div><span style="color:#aaa">Modified on</span> 01/12/2026</div>
+            <div><span style="color:#aaa">Modified on</span> 01/22/2026</div>
         </div>
     </div>
 
@@ -142,30 +127,18 @@
         </div>
     </div>
 
-    <div class="policy-container">
-        <img src="left-panther.png" class="panther-img" alt="Pink Panther">
-        <div class="policy-card">
-            <h1 style="color: #007bff; margin: 0;">The Inteplast Group</h1>
-            <p style="color: #555; font-weight: bold; font-size: 18px;">Quality Policy</p>
-            <hr style="border: 1px solid #007bff; width: 60%; margin: 10px auto;">
-            <p style="text-align: left; font-size: 14px; line-height: 1.6;">
-                The Inteplast Group and all of its personnel strive for the highest degree of quality performance in all aspects of operation. This is achieved through clear and well documented systems and procedures... 
-            </p>
-            <p style="margin-top: 20px; font-weight: bold;">Dr. John Young<br><span style="font-weight: normal; color: #777;">President</span></p>
-        </div>
-        <img src="right-panther.png" class="panther-img" alt="Pink Panther">
-    </div>
-
     <script>
-        // Expanded list from your document 
+        // Quotes pulled directly from your document
         const quotes = [
-            "“The only way to do great work is to love what you do.” — Steve Jobs ",
-            "“It always seems impossible until it’s done.” — Nelson Mandela ",
-            "“Be the change that you wish to see in the world.” — Mahatma Gandhi ",
-            "“Success is not the key to happiness. Happiness is the key to success.” — Albert Schweitzer ",
-            "“Don’t watch the clock; do what it does. Keep going.” — Sam Levenson ",
-            "“Success is no accident. It is hard work, perseverance, learning, studying, sacrifice...” — Pele ",
-            "“The difference between the impossible and the possible lies in a person’s determination.” — Tommy Lasorda "
+            "“The only way to do great work is to love what you do.” — Steve Jobs",
+            "“It always seems impossible until it’s done.” — Nelson Mandela",
+            "“Be the change that you wish to see in the world.” — Mahatma Gandhi",
+            "“Success is not the key to happiness. Happiness is the key to success.” — Albert Schweitzer",
+            "“Don’t watch the clock; do what it does. Keep going.” — Sam Levenson",
+            "“Success is no accident. It is hard work, perseverance, learning, studying, sacrifice...” — Pele",
+            "“The difference between the impossible and the possible lies in a person’s determination.” — Tommy Lasorda",
+            "“Authenticity is magnetic. People are drawn to those who are unapologetically themselves.” — Alicia Keys",
+            "“Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.” — Christian D. Larson"
         ];
 
         function updateQuote() {
@@ -174,7 +147,8 @@
             quoteElement.innerHTML = quotes[randomIndex];
         }
 
-        setInterval(updateQuote, 120000); // 2 minutes
+        // Rotate quote every 2 minutes (120,000 milliseconds)
+        setInterval(updateQuote, 120000); 
 
         function toggleDropdown() {
             document.getElementById("homeDropdown").classList.toggle("show");
