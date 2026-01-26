@@ -13,7 +13,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             color: black;
-            overflow: hidden; 
+            overflow-x: hidden; 
         }
 
         /* --- TOP WHITEBOARD HEADER STYLING --- */
@@ -26,7 +26,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            min-height: 80px; /* Use min-height instead of fixed height for mobile */
         }
 
         .header-left h2 {
@@ -77,7 +77,29 @@
         .info-row { margin-bottom: 4px; }
         .info-label { color: #aaa; margin-right: 5px; }
 
-        /* --- LEVEL 1 (Home Button) STYLING --- */
+        /* --- MOBILE RESPONSIVE HEADER ONLY --- */
+        @media screen and (max-width: 768px) {
+            .whiteboard-header {
+                flex-direction: column; /* Stack vertically on phones */
+                text-align: center;
+                padding: 20px;
+                height: auto;
+            }
+            .header-right {
+                border-left: none; /* Remove side border on phone */
+                border-top: 1px solid #eee; /* Add top border instead */
+                padding-left: 0;
+                padding-top: 10px;
+                margin-top: 15px;
+                text-align: center;
+                width: 100%;
+            }
+            .header-center {
+                margin: 15px 0;
+            }
+        }
+
+        /* --- LEVEL 1 (Home Button) STYLING (UNMODIFIED) --- */
         .dropdown {
             position: absolute; 
             top: 140px; 
@@ -128,7 +150,7 @@
         .disabled-link { color: #ccc !important; pointer-events: none; }
         .disabled-link:hover { background-color: transparent !important; }
 
-        /* --- NESTED STYLING (Levels 2 & 3) --- */
+        /* --- NESTED STYLING (Levels 2 & 3) (UNMODIFIED) --- */
         .nested-dropdown, .nested-dropdown-line { position: relative; }
         
         .nested-content {
@@ -240,7 +262,6 @@
     </div>
 
     <script>
-        // Full list of quotes from your document
         const quotes = [
             "“Tell me and I forget. Teach me and I remember. Involve me and I learn.” — Benjamin Franklin",
             "“A pessimist is one who makes difficulties of his opportunities and an optimist is one who makes opportunities of his difficulties.” — Harry S. Truman",
@@ -298,9 +319,7 @@
             quoteTextElement.innerText = quotes[randomIndex];
         }
 
-        // Run once on load
         updateQuote();
-        // Set rotation to every 2 minutes (120,000 milliseconds)
         setInterval(updateQuote, 120000);
 
         function toggleDropdown() {
