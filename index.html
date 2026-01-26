@@ -6,13 +6,15 @@
     <title>Maintenance One</title>
     
     <style>
+        /* --- General Page Styling --- */
         body {
-            background-color: #ffeef2;
+            background-color: #ffeef2; /* Light pink background from your favorite version */
             margin: 0;
             font-family: Arial, sans-serif;
+            overflow-x: hidden;
         }
 
-        /* --- WHITEBOARD HEADER --- */
+        /* --- MAINTENANCE ONE WHITEBOARD HEADER --- */
         .whiteboard-header {
             background-color: white;
             margin: 10px;
@@ -25,16 +27,15 @@
         }
         .header-left h2 { margin: 0; font-size: 20px; text-transform: uppercase; }
         .header-left p { margin: 5px 0; color: #888; font-size: 13px; }
-        .header-center { text-align: center; flex-grow: 1; }
-        .quote-label { font-size: 9px; color: #aaa; text-transform: uppercase; }
-        .quote-text { color: #007bff; font-style: italic; font-size: 14px; }
+        .header-center { text-align: center; flex: 1; }
+        .quote-label { font-size: 9px; color: #aaa; text-transform: uppercase; display: block; }
+        .quote-text { color: #007bff; font-style: italic; font-size: 14px; margin-top: 5px; }
         .header-right { font-size: 11px; color: #666; text-align: right; border-left: 1px solid #eee; padding-left: 15px; }
 
         /* --- THE "OLD STYLE" CASCADING MENU --- */
-        .dropdown {
+        .menu-container {
             margin: 20px;
             position: relative;
-            display: inline-block;
         }
 
         .dropbtn {
@@ -48,7 +49,7 @@
             border-radius: 4px;
         }
 
-        /* Main Dropdown Level 1 */
+        /* Level 1 Dropdown */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -56,6 +57,7 @@
             min-width: 180px;
             box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
             z-index: 1000;
+            margin-top: 2px;
         }
 
         .dropdown-content a {
@@ -63,46 +65,48 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #f1f1f1;
         }
 
+        /* Hovering over Level 1 items */
         .dropdown-content a:hover { background-color: yellow; }
 
-        /* Cascading Logic for Level 2 & 3 */
-        .nested { position: relative; }
+        /* Cascading Setup */
+        .has-submenu { position: relative; }
 
-        /* Level 2 (F12, F13...) */
-        .nested-content {
+        /* Level 2 (Schematics -> 01 F12, 02 F13...) */
+        .submenu-level-2 {
             display: none;
             position: absolute;
-            left: 100%; /* Exact alignment to the right */
-            top: 0;      /* Exact alignment to the top of parent */
+            left: 100%; /* Push exactly to the right */
+            top: 0;      /* Align perfectly with the top of parent item */
             background-color: white;
             min-width: 180px;
             box-shadow: 4px 0px 8px rgba(0,0,0,0.1);
         }
 
-        /* Level 3 (Line 1, Line 2...) */
-        .nested-content-line {
+        /* Level 3 (02 F13 -> Line 1, Line 2...) */
+        .submenu-level-3 {
             display: none;
             position: absolute;
-            left: 100%; /* Pops out right of Level 2 */
+            left: 100%;
             top: 0;
             background-color: white;
-            min-width: 150px;
+            min-width: 120px;
             box-shadow: 4px 0px 8px rgba(0,0,0,0.1);
         }
 
-        /* Hover Triggers */
-        .show { display: block; }
-        .nested:hover > .nested-content { display: block; }
-        .nested-line:hover > .nested-content-line { display: block; }
+        /* Show Submenus on Hover */
+        .menu-container:hover .dropdown-content { display: block; }
+        .has-submenu:hover > .submenu-level-2 { display: block; }
+        .has-submenu-line:hover > .submenu-level-3 { display: block; }
 
         /* --- MOBILE ADJUSTMENTS --- */
         @media screen and (max-width: 768px) {
-            .whiteboard-header { flex-direction: column; }
-            .header-right { border-left: none; border-top: 1px solid #eee; padding-top: 10px; margin-top: 10px; text-align: center; }
-            .nested-content, .nested-content-line { position: static; width: 100%; border-left: 4px solid #007bff; }
+            .whiteboard-header { flex-direction: column; text-align: center; }
+            .header-right { border-left: none; border-top: 1px solid #eee; padding: 10px 0; margin-top: 10px; width: 100%; text-align: center; }
+            /* On mobile, stack menus instead of side-cascading */
+            .submenu-level-2, .submenu-level-3 { position: static; width: 100%; box-shadow: none; border-left: 3px solid #007bff; }
         }
     </style>
 </head>
@@ -114,7 +118,7 @@
             <p>Make an easy life.</p>
         </div>
         <div class="header-center">
-            <span class="quote-label">Quote of the Celebrities</span>
+            <span class="quote-label">QUOTE OF THE CELEBRITIES</span>
             <div id="random-quote" class="quote-text">
                 "The only way to do great work is to love what you do." — Steve Jobs [cite: 5]
             </div>
@@ -123,24 +127,27 @@
             <div>Version <span style="color:#007bff">1.0.0</span></div>
             <div>Managed by ME Team</div>
             <div>Designed by Benjamin Lin</div>
-            <div>Modified on 01/23/2026</div>
+            <div>Modified on 01/26/2026</div>
         </div>
     </div>
 
-    <div class="dropdown">
-        <button onclick="toggleMenu()" class="dropbtn">Home &#9662;</button>
-        <div id="mainMenu" class="dropdown-content">
-            <div class="nested">
-                <a href="#">Schematics ></a>
-                <div class="nested-content">
-                    <div class="nested-line">
-                        <a href="#">01 F12 ></a>
-                        <div class="nested-content-line">
-                            <a href="Line-1-F12-Schematic.pdf">Line 1</a>
-                            <a href="Line-2-F12-Schematic.pdf">Line 2</a>
+    <div class="menu-container">
+        <button class="dropbtn">Home &#9662;</button>
+        <div class="dropdown-content">
+            <div class="has-submenu">
+                <a href="#">Schematics &gt;</a>
+                <div class="submenu-level-2">
+                    <a href="#">01 F12</a>
+                    <div class="has-submenu has-submenu-line">
+                        <a href="#">02 F13 &gt;</a>
+                        <div class="submenu-level-3">
+                            <a href="Line-1-Schematic.pdf">Line 1</a>
+                            <a href="Line-2-Schematic.pdf">Line 2</a>
+                            <a href="Line-3-Schematic.pdf">Line 3</a>
                         </div>
                     </div>
-                    <a href="#">02 F13 ></a>
+                    <a href="#">03 F16</a>
+                    <a href="#">04 F201</a>
                 </div>
             </div>
             <a href="calibration.html">Calibration Procedure</a>
@@ -149,31 +156,25 @@
     </div>
 
     <script>
+        // Quotes from your celebrity document
         const quotes = [
+            "“The only way to do great work is to love what you do.” — Steve Jobs [cite: 5]",
             "“Success is not the key to happiness. Happiness is the key to success.” — Albert Schweitzer [cite: 4]",
             "“It always seems impossible until it’s done.” — Nelson Mandela [cite: 9]",
             "“Be the change that you wish to see in the world.” — Mahatma Gandhi [cite: 12]",
             "“Don’t watch the clock; do what it does. Keep going.” — Sam Levenson [cite: 14]",
-            "“Success is no accident. It is hard work, perseverance...” — Pele [cite: 21]",
-            "“The difference between the impossible and the possible lies in determination.” — Tommy Lasorda [cite: 25]",
-            "“Authenticity is magnetic. People are drawn to those who are themselves.” — Alicia Keys [cite: 98]"
+            "“Believe you can and you’re halfway there.” — Theodore Roosevelt [cite: 56]",
+            "“Authenticity is magnetic. People are drawn to those who are unapologetically themselves.” — Alicia Keys [cite: 98]"
         ];
 
         function updateQuote() {
             const el = document.getElementById("random-quote");
-            el.innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            el.innerHTML = randomQuote;
         }
+
+        // Rotate the quote every 2 minutes
         setInterval(updateQuote, 120000);
-
-        function toggleMenu() {
-            document.getElementById("mainMenu").classList.toggle("show");
-        }
-
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropbtn')) {
-                document.getElementById("mainMenu").classList.remove("show");
-            }
-        }
     </script>
 </body>
 </html>
