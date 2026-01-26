@@ -8,12 +8,12 @@
     <style>
         /* --- General Page Styling --- */
         body {
-            background-color: #ffeef2;
+            background-color: #ffeef2; /* Light Pink Background */
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
             color: black;
-            overflow-x: hidden; 
+            overflow: hidden; 
         }
 
         /* --- TOP WHITEBOARD HEADER STYLING --- */
@@ -26,7 +26,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 80px;
+            height: 80px;
         }
 
         .header-left h2 {
@@ -59,7 +59,7 @@
             margin-bottom: 5px;
         }
         .header-center .quote-text {
-            color: #007bff; 
+            color: #007bff; /* Blue text */
             font-style: italic;
             font-size: 14px;
             max-width: 600px;
@@ -77,40 +77,14 @@
         .info-row { margin-bottom: 4px; }
         .info-label { color: #aaa; margin-right: 5px; }
 
-        /* -------------------------------------------------- */
-        /* SMARTPHONE DISPLAY FIX (Header Only)               */
-        /* -------------------------------------------------- */
-        @media screen and (max-width: 600px) {
-            .whiteboard-header {
-                flex-direction: column; /* Stack items vertically */
-                height: auto;
-                padding: 15px;
-                text-align: center;
-                margin: 10px;
-            }
-            .header-left h2 { font-size: 18px; }
-            .header-left p { font-size: 12px; margin-bottom: 10px; }
-            
-            .header-center { margin: 15px 0; }
-            .header-center .quote-text { font-size: 13px; }
-
-            .header-right {
-                border-left: none;
-                border-top: 1px solid #eee;
-                padding-left: 0;
-                padding-top: 10px;
-                text-align: center;
-                min-width: 100%;
-            }
-        }
-
-        /* --- SIDE-CASCADING MENU (UNTOUCHED) --- */
+        /* --- LEVEL 1 (Home Button) STYLING --- */
         .dropdown {
             position: absolute; 
             top: 140px; 
             left: 20px;
             display: inline-block;
         }
+
         .dropbtn {
             background-color: white; 
             color: black;
@@ -122,6 +96,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             border-radius: 5px;
         }
+        
         .dropdown-content {
             display: none; 
             position: absolute; 
@@ -132,7 +107,9 @@
             margin-top: 5px; 
             border-radius: 5px;
         }
+        
         .show { display: block; }
+        
         .dropdown-content a {
             color: black;
             padding: 12px 16px;
@@ -142,12 +119,18 @@
             background-color: #f9f9f9; 
             white-space: nowrap;
         }
+
         .dropdown-content a:hover {
             background-color: yellow;
             color: black;
         }
+
         .disabled-link { color: #ccc !important; pointer-events: none; }
+        .disabled-link:hover { background-color: transparent !important; }
+
+        /* --- NESTED STYLING (Levels 2 & 3) --- */
         .nested-dropdown, .nested-dropdown-line { position: relative; }
+        
         .nested-content {
             display: none;
             position: absolute;
@@ -158,7 +141,9 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 20; 
         }
+
         .nested-dropdown:hover > .nested-content { display: block; }
+
         .nested-content-line {
             display: none; 
             position: absolute;
@@ -169,13 +154,17 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 30; 
         }
+
         .nested-dropdown-line:hover > .nested-content-line { display: block; }
+        
         .schematics-link, .line-link { display: block; padding: 12px 16px; text-decoration: none; color: black; }
+
         .nested-dropdown:hover > .schematics-link,
         .nested-dropdown-line:hover > .line-link {
             background-color: yellow;
             color: black;
         }
+
     </style>
 </head>
 <body>
@@ -185,10 +174,14 @@
             <h2>Maintenance One</h2>
             <p>Make an easy life.</p>
         </div>
+
         <div class="header-center">
             <span class="quote-label">Quote of the Celebrities</span>
-            <div id="quote-display" class="quote-text">Loading inspiration...</div>
+            <div id="quote-display" class="quote-text">
+                "Loading inspiration..."
+            </div>
         </div>
+
         <div class="header-right">
             <div class="info-row"><span class="info-label">Version</span> <span style="color: #007bff;">1.0.0</span></div>
             <div class="info-row"><span class="info-label">Managed by</span> ME Team</div>
@@ -221,6 +214,24 @@
                             <a class="disabled-link">Line 4</a>
                         </div>
                     </div>
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">03 F16 &gt;</a>
+                        <div class="nested-content-line">
+                            <a class="disabled-link">Line 1</a>
+                            <a class="disabled-link">Line 2</a>
+                            <a class="disabled-link">Line 3</a>
+                            <a class="disabled-link">Line 4</a>
+                        </div>
+                    </div>
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">04 F201 &gt;</a>
+                        <div class="nested-content-line">
+                            <a class="disabled-link">Line 1</a>
+                            <a href="Line-2-F201-Schematic.pdf">Line 2</a>
+                            <a class="disabled-link">Line 3</a>
+                            <a class="disabled-link">Line 4</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <a href="calibration.html">Calibration Procedure</a>
@@ -229,25 +240,68 @@
     </div>
 
     <script>
+        // Full list of quotes from your document
         const quotes = [
             "“Tell me and I forget. Teach me and I remember. Involve me and I learn.” — Benjamin Franklin",
+            "“A pessimist is one who makes difficulties of his opportunities and an optimist is one who makes opportunities of his difficulties.” — Harry S. Truman",
+            "“Always remember that you are absolutely unique. Just like everyone else.” — Margaret Mead",
+            "“An unexamined life is not worth living.” — Socrates",
+            "“Challenges are what make life interesting and overcoming them is what makes life meaningful.” — Joshua J. Marine",
+            "“Don’t judge each day by the harvest you reap but by the seeds that you plant.” — Robert Louis Stevenson",
+            "“Education is not the filling of a pail but the lighting of a fire.” — William Butler Yeats",
+            "“Every man is a poet when he is in love.” — Plato",
+            "“Genius only means hard-working all one’s life.” — Mendeleyev",
+            "“Happiness lies not in the mere possession of money; it lies in the joy of achievement, in the thrill of creative effort.” — Franklin Roosevelt",
             "“I am a slow walker, but I never walk backwards.” — Abraham Lincoln",
-            "“Knowledge is power.” — Francis Bacon",
-            "“The only way to do great work is to love what you do.” — Steve Jobs",
+            "“I can’t change the direction of the wind, but I can adjust my sails to always reach my destination.” — Jimmy Dean",
+            "“I didn’t fail the test. I just found 100 ways to do it wrong.” — Benjamin Franklin",
+            "“I disapprove of what you say, but I will defend to the death your right to say it.” — Voltaire",
+            "“If I looked compared to others far, is because I stand on giant’s shoulder.” — Newton",
+            "“If you can’t fly, then run; if you can’t run, then walk; if you can’t walk, then crawl; but whatever you do, you have to keep moving forward.” — Martin Luther King",
+            "“If you don’t like something, change it; if you can’t change it, change the way you think about it.” — Mary Engelbreit",
+            "“If you have no critics, you will likely have no success.” — Malcolm S. Forbes",
+            "“If you judge people, you have no time to love them.” — Mother Teresa",
+            "“If you look at what you have in life, you’ll always have more. If you look at what you don’t have in life, you’ll never have enough.” — Oprah Winfrey",
             "“Imagination is more important than knowledge.” — Albert Einstein",
+            "“Intelligence plus character – that is the goal of real education.” — Martin Luther King",
+            "“It is not how much you do, but how much love you put into the doing that matters.” — Mother Teresa",
+            "“Knowledge is a treasure, but practice is the key to it.” — Thomas Fuller",
+            "“Knowledge is power.” — Francis Bacon",
+            "“Life is like riding a bicycle. To keep your balance you must keep moving.” — Albert Einstein",
+            "“Living without an aim is like sailing without a compass.” — Alexandre Dumas",
+            "“Love the life you live. Live the life you love.” — Bob Marley",
+            "“Never argue with stupid people, they will drag you down to their level and then beat you with experience.” — Mark Twain",
+            "“Success is not final, failure is not fatal: it is the courage to continue that counts.” — Winston Churchill",
+            "“The best and most beautiful things in the world cannot be seen or even touched. They must be felt with the heart.” — Helen Keller",
+            "“The first wealth is health.” — Ralph Waldo Emerson",
+            "“The greatest glory in living lies not in never falling, but in rising every time we fall.” — Nelson Mandela",
+            "“The only thing we have to fear is fear itself.” — Franklin Roosevelt",
+            "“The only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle.” — Steve Jobs",
+            "“The ordinary focus on what they’re getting. The extraordinary think about who they’re becoming.” — Robin Sharma",
+            "“The past cannot be changed. The future is yet in your power.” — Mary Pickford",
             "“The purpose of our lives is to be happy.” — Dalai Lama",
+            "“The way to get started is to quit talking and begin doing.” — Walt Disney",
+            "“Those who dare to fail miserably can achieve greatly.” — John F. Kennedy",
+            "“Try not to become a man of success but rather try to become a man of value.” — Albert Einstein",
+            "“Until we can manage time, we can manage nothing else.” — Peter F. Drucker",
+            "“We must accept finite disappointment, but we must never lose infinite hope.” — Martin Luther King",
+            "“When the whole world is silent, even one voice becomes powerful.” — Malala",
+            "“When we are saying this cannot be accomplished, this cannot be done, then we are short-changing ourselves.” — Kobe Bryant",
+            "“Where there is a will, there is a way.” — Thomas Edison",
+            "“You have to believe in yourself. That’s the secret of success.” — Charles Chaplin",
             "“You must be the change you want to see in the world.” — Gandhi"
-            /* ... (All other quotes from your document) */
         ];
 
         function updateQuote() {
-            const el = document.getElementById("quote-display");
+            const quoteTextElement = document.getElementById("quote-display");
             const randomIndex = Math.floor(Math.random() * quotes.length);
-            el.innerText = quotes[randomIndex];
+            quoteTextElement.innerText = quotes[randomIndex];
         }
 
+        // Run once on load
         updateQuote();
-        setInterval(updateQuote, 120000); // 2 Minutes
+        // Set rotation to every 2 minutes (120,000 milliseconds)
+        setInterval(updateQuote, 120000);
 
         function toggleDropdown() {
             document.getElementById("homeDropdown").classList.toggle("show");
@@ -262,5 +316,6 @@
             }
         }
     </script>
+
 </body>
 </html>
