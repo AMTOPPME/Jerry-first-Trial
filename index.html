@@ -99,13 +99,13 @@
             }
         }
 
-        /* --- LEVEL 1 (Home Button) STYLING (UNMODIFIED) --- */
-        .dropdown {
-            position: absolute; 
-            top: 140px; 
-            left: 20px;
-            display: inline-block;
-        }
+        /* --- LEVEL 1 (Home Button) STYLING --- */
+.dropdown {
+    /* Changed from absolute to relative to move it below the header */
+    position: relative; 
+    margin: 10px 0 0 20px; /* Top margin to give space below header, left margin to align */
+    display: inline-block;
+}
 
         .dropbtn {
             background-color: white; 
