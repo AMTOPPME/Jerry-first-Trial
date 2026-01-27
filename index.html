@@ -6,8 +6,9 @@
     <title>Maintenance One</title>
     
     <style>
+        /* --- General Page Styling --- */
         body {
-            background-color: #ffeef2;
+            background-color: #ffeef2; /* Light Pink Background */
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
@@ -15,7 +16,7 @@
             overflow-x: hidden; 
         }
 
-        /* --- WHITEBOARD HEADER --- */
+        /* --- TOP WHITEBOARD HEADER STYLING --- */
         .whiteboard-header {
             background-color: white;
             margin: 15px;
@@ -25,34 +26,87 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 80px;
+            min-height: 80px; /* Use min-height instead of fixed height for mobile */
         }
 
-        .header-left h2 { margin: 0; color: #333; font-size: 24px; font-weight: bold; text-transform: uppercase; }
-        .header-left p { margin: 5px 0 0; color: #888; font-size: 14px; }
+        .header-left h2 {
+            margin: 0;
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .header-left p {
+            margin: 5px 0 0;
+            color: #888;
+            font-size: 14px;
+        }
 
-        .header-center { text-align: center; flex: 1; margin: 0 20px; display: flex; flex-direction: column; align-items: center; }
-        .header-center .quote-label { font-size: 10px; color: #aaa; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
-        .header-center .quote-text { color: #007bff; font-style: italic; font-size: 14px; max-width: 600px; line-height: 1.4; }
+        .header-center {
+            text-align: center;
+            flex: 1;
+            margin: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header-center .quote-label {
+            font-size: 10px;
+            color: #aaa;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .header-center .quote-text {
+            color: #007bff; /* Blue text */
+            font-style: italic;
+            font-size: 14px;
+            max-width: 600px;
+            line-height: 1.4;
+        }
 
-        .header-right { font-size: 11px; color: #666; text-align: right; border-left: 1px solid #eee; padding-left: 20px; min-width: 150px; }
+        .header-right {
+            font-size: 11px;
+            color: #666;
+            text-align: right;
+            border-left: 1px solid #eee;
+            padding-left: 20px;
+            min-width: 150px;
+        }
         .info-row { margin-bottom: 4px; }
         .info-label { color: #aaa; margin-right: 5px; }
 
-        /* Smartphone Optimization */
+        /* --- MOBILE RESPONSIVE HEADER ONLY --- */
         @media screen and (max-width: 768px) {
-            .whiteboard-header { flex-direction: column; text-align: center; padding: 20px; height: auto; }
-            .header-right { border-left: none; border-top: 1px solid #eee; padding-top: 10px; margin-top: 15px; text-align: center; width: 100%; }
-            .header-center { margin: 15px 0; }
+            .whiteboard-header {
+                flex-direction: column; /* Stack vertically on phones */
+                text-align: center;
+                padding: 20px;
+                height: auto;
+            }
+            .header-right {
+                border-left: none; /* Remove side border on phone */
+                border-top: 1px solid #eee; /* Add top border instead */
+                padding-left: 0;
+                padding-top: 10px;
+                margin-top: 15px;
+                text-align: center;
+                width: 100%;
+            }
+            .header-center {
+                margin: 15px 0;
+            }
         }
 
-        /* --- DROPDOWN MENU --- */
-        .dropdown {
-            position: relative; /* Places "Home" below header */
-            margin: 10px 0 20px 20px;
-            display: inline-block;
-            z-index: 100;
-        }
+        /* --- LEVEL 1 (Home Button) STYLING --- */
+.dropdown {
+    /* Changed from absolute to relative to move it below the header */
+    position: relative; 
+    margin: 10px 0 0 20px; /* Top margin to give space below header, left margin to align */
+    display: inline-block;
+}
+
         .dropbtn {
             background-color: white; 
             color: black;
@@ -64,45 +118,75 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             border-radius: 5px;
         }
+        
         .dropdown-content {
             display: none; 
             position: absolute; 
             background-color: #f9f9f9;
-            min-width: 180px;
+            min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10; 
             margin-top: 5px; 
             border-radius: 5px;
         }
+        
         .show { display: block; }
-
-        /* Links and Yellow Highlight */
-        .dropdown-content a, .submenu-trigger {
+        
+        .dropdown-content a {
             color: black;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
             text-align: left;
-            background-color: #f9f9f9;
-            cursor: pointer;
-        }
-        .dropdown-content a:hover, .submenu-trigger:hover {
-            background-color: yellow;
+            background-color: #f9f9f9; 
+            white-space: nowrap;
         }
 
-        /* Cascading Submenus */
-        .nested { position: relative; }
+        .dropdown-content a:hover {
+            background-color: yellow;
+            color: black;
+        }
+
+        .disabled-link { color: #ccc !important; pointer-events: none; }
+        .disabled-link:hover { background-color: transparent !important; }
+
+        /* --- NESTED STYLING (Levels 2 & 3) (UNMODIFIED) --- */
+        .nested-dropdown, .nested-dropdown-line { position: relative; }
+        
         .nested-content {
             display: none;
             position: absolute;
             left: 100%; 
             top: 0;
             background-color: #f1f1f1;
-            min-width: 160px;
+            min-width: 150px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 20; 
         }
-        .nested:hover > .nested-content { display: block; }
+
+        .nested-dropdown:hover > .nested-content { display: block; }
+
+        .nested-content-line {
+            display: none; 
+            position: absolute;
+            left: 100%; 
+            top: 0;
+            background-color: #e3e3e3; 
+            min-width: 150px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 30; 
+        }
+
+        .nested-dropdown-line:hover > .nested-content-line { display: block; }
         
-        .disabled-link { color: #ccc !important; pointer-events: none; }
+        .schematics-link, .line-link { display: block; padding: 12px 16px; text-decoration: none; color: black; }
+
+        .nested-dropdown:hover > .schematics-link,
+        .nested-dropdown-line:hover > .line-link {
+            background-color: yellow;
+            color: black;
+        }
+
     </style>
 </head>
 <body>
@@ -112,14 +196,18 @@
             <h2>Maintenance One</h2>
             <p>Make an easy life.</p>
         </div>
+
         <div class="header-center">
             <span class="quote-label">Quote of the Celebrities</span>
-            <div id="quote-display" class="quote-text">Loading...</div>
+            <div id="quote-display" class="quote-text">
+                "Loading inspiration..."
+            </div>
         </div>
+
         <div class="header-right">
             <div class="info-row"><span class="info-label">Version</span> <span style="color: #007bff;">1.0.0</span></div>
-            <div class="info-row"><span class="info-label">Managed by</span> Amtopp/ME</div>
-            <div class="info-row"><span class="info-label">Designed by</span> Engineer Team</div>
+            <div class="info-row"><span class="info-label">Managed by</span> Amtopp/ME </div>
+            <div class="info-row"><span class="info-label">Designed by</span> Bopp 1/Engineer Team</div>
             <div class="info-row"><span class="info-label">Modified on</span> 01/26/2026</div>
         </div>
     </div>
@@ -127,48 +215,48 @@
     <div class="dropdown">
         <button onclick="toggleDropdown()" class="dropbtn">Home &#9662;</button>
         <div id="homeDropdown" class="dropdown-content">
-            
-            <div class="nested">
-                <div class="submenu-trigger">Schematics ></div>
+            <div class="nested-dropdown">
+                <a href="#" class="schematics-link">Schematics &gt;</a> 
                 <div class="nested-content">
-                    <div class="nested">
-                        <div class="submenu-trigger">01 F12 ></div>
-                        <div class="nested-content">
-                            <a href="Line-1-F12-Sch.pdf">Line 1</a>
-                            <a href="Line-2-F12-Sch.pdf">Line 2</a>
-                            <a href="Line-3-F12-Sch.pdf">Line 3</a>
-                            <a href="Line-4-F12-Sch.pdf">Line 4</a>
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">01 F12 &gt;</a>
+                        <div class="nested-content-line">
+                            <a href="Line-1-F12-Schematic.pdf">Line 1</a>
+                            <a href="Line-2-F12-Schematic.pdf">Line 2</a>
+                            <a href="Line-3-F12-Schematic.pdf">Line 3</a>
+                            <a href="Line-4-F12-Schematic.pdf">Line 4</a>
                         </div>
                     </div>
-                    <div class="nested">
-                        <div class="submenu-trigger">02 F13 ></div>
-                        <div class="nested-content">
-                            <a href="Line-1-F13-Sch.pdf">Line 1</a>
-                            <a href="Line-2-F13-Sch.pdf">Line 2</a>
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">02 F13 &gt;</a>
+                        <div class="nested-content-line">
+                            <a href="Line-1-F13-Schematic.pdf">Line 1</a>
+                            <a href="Line-2-F13-Schematic.pdf">Line 2</a>
+                            <a href="Line-3-F13-Schematic.pdf">Line 3</a>
+                            <a class="disabled-link">Line 4</a>
+                        </div>
+                    </div>
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">03 F16 &gt;</a>
+                        <div class="nested-content-line">
+                            <a class="disabled-link">Line 1</a>
+                            <a class="disabled-link">Line 2</a>
+                            <a class="disabled-link">Line 3</a>
+                            <a class="disabled-link">Line 4</a>
+                        </div>
+                    </div>
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">04 F201 &gt;</a>
+                        <div class="nested-content-line">
+                            <a class="disabled-link">Line 1</a>
+                            <a href="Line-2-F201-Schematic.pdf">Line 2</a>
+                            <a class="disabled-link">Line 3</a>
+                            <a class="disabled-link">Line 4</a>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="nested">
-                <div class="submenu-trigger">I/O Description ></div>
-                <div class="nested-content">
-                    <div class="nested">
-                        <div class="submenu-trigger">01 F12 ></div>
-                        <div class="nested-content">
-                            <a href="F12-L1-IO.pdf">Line 1</a>
-                            <a href="F12-L2-IO.pdf">Line 2</a>
-                        </div>
-                    </div>
-                    <div class="nested">
-                        <div class="submenu-trigger">02 F13 ></div>
-                        <div class="nested-content">
-                            <a href="F13-L1-IO.pdf">Line 1</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <a href="calibration.html">I/O Description</a>
             <a href="calibration.html">Calibration Procedure</a>
             <a href="inventory.html">PC Inventory</a>
         </div>
@@ -176,66 +264,64 @@
 
     <script>
         const quotes = [
-            "Tell me and I forget. Teach me and I remember. Involve me and I learn. — Benjamin Franklin", [cite: 63]
-            "A pessimist is one who makes difficulties of his opportunities and an optimist is one who makes opportunities of his difficulties. — Harry S. Truman", [cite: 64, 65]
-            "Always remember that you are absolutely unique. Just like everyone else. — Margaret Mead", [cite: 66]
-            "An unexamined life is not worth living. — Socrates", [cite: 67]
-            "Challenges are what make life interesting and overcoming them is what makes life meaningful. — Joshua J. Marine", [cite: 68]
-            "Don’t judge each day by the harvest you reap but by the seeds that you plant. — Robert Louis Stevenson", [cite: 69]
-            "Education is not the filling of a pail but the lighting of a fire. — William Butler Yeats", [cite: 70]
-            "Every man is a poet when he is in love. — Plato", [cite: 71]
-            "Genius only means hard-working all one’s life. — Mendeleyev", [cite: 72]
-            "Happiness lies not in the mere possession of money; it lies in the joy of achievement, in the thrill of creative effort. — Franklin Roosevelt", [cite: 73, 74]
-            "I am a slow walker, but I never walk backwards. — Abraham Lincoln", [cite: 75]
-            "I can’t change the direction of the wind, but I can adjust my sails to always reach my destination. — Jimmy Dean", [cite: 76, 77]
-            "I didn’t fail the test. I just found 100 ways to do it wrong. — Benjamin Franklin", [cite: 78]
-            "I disapprove of what you say, but I will defend to the death your right to say it. — Voltaire", [cite: 79]
-            "If I looked compared to others far, is because I stand on giant’s shoulder. — Newton", [cite: 80]
-            "If you can’t fly, then run; if you can’t run, then walk; if you can’t walk, then crawl; but whatever you do, you have to keep moving forward. — Martin Luther King", [cite: 81, 82]
-            "If you don’t like something, change it; if you can’t change it, change the way you think about it. — Mary Engelbreit", [cite: 83, 84]
-            "If you have no critics, you will likely have no success. — Malcolm S. Forbes", [cite: 85]
-            "If you judge people, you have no time to love them. — Mother Teresa", [cite: 86]
-            "If you look at what you have in life, you’ll always have more. If you look at what you don’t have in life, you’ll never have enough. — Oprah Winfrey", [cite: 87, 88]
-            "Imagination is more important than knowledge. — Albert Einstein", [cite: 89]
-            "Intelligence plus character – that is the goal of real education. — Martin Luther King", [cite: 90]
-            "It is not how much you do, but how much love you put into the doing that matters. — Mother Teresa", [cite: 91, 92]
-            "Knowledge is a treasure, but practice is the key to it. — Thomas Fuller", [cite: 93]
-            "Knowledge is power. — Francis Bacon", [cite: 94]
-            "Life is like riding a bicycle. To keep your balance you must keep moving. — Albert Einstein", [cite: 95]
-            "Living without an aim is like sailing without a compass. — Alexandre Dumas", [cite: 96]
-            "Love the life you live. Live the life you love. — Bob Marley", [cite: 97]
-            "Love well, whip well. — Benjamin Franklin", [cite: 98]
-            "Never argue with stupid people, they will drag you down to their level and then beat you with experience. — Mark Twain", [cite: 99, 100]
-            "Success is not final, failure is not fatal: it is the courage to continue that counts. — Winston Churchill", [cite: 101]
-            "The best and most beautiful things in the world cannot be seen or even touched. They must be felt with the heart. — Helen Keller", [cite: 102, 103]
-            "The first wealth is health. — Ralph Waldo Emerson", [cite: 104]
-            "The greatest glory in living lies not in never falling, but in rising every time we fall. — Nelson Mandela", [cite: 105]
-            "The only thing we have to fear is fear itself. — Franklin Roosevelt", [cite: 106]
-            "The only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle. — Steve Jobs", [cite: 107, 108]
-            "The ordinary focus on what they’re getting. The extraordinary think about who they’re becoming. — Robin Sharma", [cite: 109]
-            "The past cannot be changed. The future is yet in your power. — Mary Pickford", [cite: 110]
-            "The purpose of our lives is to be happy. — Dalai Lama", [cite: 111]
-            "The way to get started is to quit talking and begin doing. — Walt Disney", [cite: 112]
-            "There are seven things that will destroy us: wealth without work; pleasure without conscience; knowledge without character; religion without sacrifice; politics without principle; science without humanity; business without ethics. — Mahatma Gandhi", [cite: 113, 114]
-            "Those who dare to fail miserably can achieve greatly. — John F. Kennedy", [cite: 115]
-            "Try not to become a man of success but rather try to become a man of value. — Albert Einstein", [cite: 116]
-            "Until we can manage time, we can manage nothing else. — Peter F. Drucker", [cite: 117]
-            "We must accept finite disappointment, but we must never lose infinite hope. — Martin Luther King", [cite: 118]
-            "When the whole world is silent, even one voice becomes powerful. — Malala", [cite: 119]
-            "When we are saying this cannot be accomplished, this cannot be done, then we are short-changing ourselves. My brain, it cannot process failure. It will not process failure. — Kobe Bryant", [cite: 120, 121]
-            "Where there is a will, there is a way. — Thomas Edison", [cite: 122]
-            "You have to believe in yourself. That’s the secret of success. — Charles Chaplin", [cite: 123]
-            "You must be the change you want to see in the world. — Gandhi" [cite: 124]
+            "“Tell me and I forget. Teach me and I remember. Involve me and I learn.” — Benjamin Franklin",
+            "“A pessimist is one who makes difficulties of his opportunities and an optimist is one who makes opportunities of his difficulties.” — Harry S. Truman",
+            "“Always remember that you are absolutely unique. Just like everyone else.” — Margaret Mead",
+            "“An unexamined life is not worth living.” — Socrates",
+            "“Challenges are what make life interesting and overcoming them is what makes life meaningful.” — Joshua J. Marine",
+            "“Don’t judge each day by the harvest you reap but by the seeds that you plant.” — Robert Louis Stevenson",
+            "“Education is not the filling of a pail but the lighting of a fire.” — William Butler Yeats",
+            "“Every man is a poet when he is in love.” — Plato",
+            "“Genius only means hard-working all one’s life.” — Mendeleyev",
+            "“Happiness lies not in the mere possession of money; it lies in the joy of achievement, in the thrill of creative effort.” — Franklin Roosevelt",
+            "“I am a slow walker, but I never walk backwards.” — Abraham Lincoln",
+            "“I can’t change the direction of the wind, but I can adjust my sails to always reach my destination.” — Jimmy Dean",
+            "“I didn’t fail the test. I just found 100 ways to do it wrong.” — Benjamin Franklin",
+            "“I disapprove of what you say, but I will defend to the death your right to say it.” — Voltaire",
+            "“If I looked compared to others far, is because I stand on giant’s shoulder.” — Newton",
+            "“If you can’t fly, then run; if you can’t run, then walk; if you can’t walk, then crawl; but whatever you do, you have to keep moving forward.” — Martin Luther King",
+            "“If you don’t like something, change it; if you can’t change it, change the way you think about it.” — Mary Engelbreit",
+            "“If you have no critics, you will likely have no success.” — Malcolm S. Forbes",
+            "“If you judge people, you have no time to love them.” — Mother Teresa",
+            "“If you look at what you have in life, you’ll always have more. If you look at what you don’t have in life, you’ll never have enough.” — Oprah Winfrey",
+            "“Imagination is more important than knowledge.” — Albert Einstein",
+            "“Intelligence plus character – that is the goal of real education.” — Martin Luther King",
+            "“It is not how much you do, but how much love you put into the doing that matters.” — Mother Teresa",
+            "“Knowledge is a treasure, but practice is the key to it.” — Thomas Fuller",
+            "“Knowledge is power.” — Francis Bacon",
+            "“Life is like riding a bicycle. To keep your balance you must keep moving.” — Albert Einstein",
+            "“Living without an aim is like sailing without a compass.” — Alexandre Dumas",
+            "“Love the life you live. Live the life you love.” — Bob Marley",
+            "“Never argue with stupid people, they will drag you down to their level and then beat you with experience.” — Mark Twain",
+            "“Success is not final, failure is not fatal: it is the courage to continue that counts.” — Winston Churchill",
+            "“The best and most beautiful things in the world cannot be seen or even touched. They must be felt with the heart.” — Helen Keller",
+            "“The first wealth is health.” — Ralph Waldo Emerson",
+            "“The greatest glory in living lies not in never falling, but in rising every time we fall.” — Nelson Mandela",
+            "“The only thing we have to fear is fear itself.” — Franklin Roosevelt",
+            "“The only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle.” — Steve Jobs",
+            "“The ordinary focus on what they’re getting. The extraordinary think about who they’re becoming.” — Robin Sharma",
+            "“The past cannot be changed. The future is yet in your power.” — Mary Pickford",
+            "“The purpose of our lives is to be happy.” — Dalai Lama",
+            "“The way to get started is to quit talking and begin doing.” — Walt Disney",
+            "“Those who dare to fail miserably can achieve greatly.” — John F. Kennedy",
+            "“Try not to become a man of success but rather try to become a man of value.” — Albert Einstein",
+            "“Until we can manage time, we can manage nothing else.” — Peter F. Drucker",
+            "“We must accept finite disappointment, but we must never lose infinite hope.” — Martin Luther King",
+            "“When the whole world is silent, even one voice becomes powerful.” — Malala",
+            "“When we are saying this cannot be accomplished, this cannot be done, then we are short-changing ourselves.” — Kobe Bryant",
+            "“Where there is a will, there is a way.” — Thomas Edison",
+            "“You have to believe in yourself. That’s the secret of success.” — Charles Chaplin",
+            "“You must be the change you want to see in the world.” — Gandhi"
         ];
 
         function updateQuote() {
-            const el = document.getElementById("quote-display");
+            const quoteTextElement = document.getElementById("quote-display");
             const randomIndex = Math.floor(Math.random() * quotes.length);
-            el.innerText = quotes[randomIndex];
+            quoteTextElement.innerText = quotes[randomIndex];
         }
 
         updateQuote();
-        setInterval(updateQuote, 120000); // 2 minutes
+        setInterval(updateQuote, 120000);
 
         function toggleDropdown() {
             document.getElementById("homeDropdown").classList.toggle("show");
@@ -250,5 +336,6 @@
             }
         }
     </script>
+
 </body>
 </html>
