@@ -208,7 +208,7 @@
             <div class="info-row"><span class="info-label">Version</span> <span style="color: #007bff;">1.0.0</span></div>
             <div class="info-row"><span class="info-label">Managed by</span> Amtopp/ME </div>
             <div class="info-row"><span class="info-label">Designed by</span> Bopp 1/Engineer Team</div>
-            <div class="info-row"><span class="info-label">Modified on</span> 01/26/2026</div>
+            <div class="info-row"><span class="info-label">Modified on</span> <span id="last-modified"></span></div>
         </div>
     </div>
 
@@ -353,7 +353,10 @@
             "“You have to believe in yourself. That’s the secret of success.” — Charles Chaplin",
             "“You must be the change you want to see in the world.” — Gandhi"
         ];
-
+        
+        // This line automatically updates the date based on the file save date
+        document.getElementById('last-modified').textContent = new Date(document.lastModified).toLocaleDateString();
+        
         function updateQuote() {
             const quoteTextElement = document.getElementById("quote-display");
             const randomIndex = Math.floor(Math.random() * quotes.length);
