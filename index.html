@@ -380,6 +380,34 @@
                 }
             }
         }
+
+
+        function openAbout() {
+            document.getElementById("aboutModal").style.display = "block";
+        }
+
+        function closeAbout() {
+            document.getElementById("aboutModal").style.display = "none";
+        }
+
+        // Updated click handler for both Dropdown and Modal
+        window.onclick = function(event) {
+            const modal = document.getElementById("aboutModal");
+            
+            // Close modal if clicking outside the box
+            if (event.target == modal) {
+                closeAbout();
+            }
+
+            // Existing dropdown logic
+            if (!event.target.matches('.dropbtn')) {
+                var dropdown = document.getElementById("homeDropdown");
+                if (dropdown && dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        }
+        
     </script>
 
     <div id="aboutModal" style="display:none; position:fixed; z-index:100; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.6); backdrop-filter: blur(2px);">
