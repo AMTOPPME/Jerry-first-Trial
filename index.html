@@ -151,10 +151,37 @@
         .disabled-link { color: #ccc !important; pointer-events: none; }
 
         /* --- MOBILE RESPONSIVE RULES --- */
+       /* --- SMARTPHONE ADJUSTMENTS (Restored Font Size) --- */
         @media screen and (max-width: 768px) {
-            .whiteboard-header { flex-direction: column; text-align: center; height: auto; }
-            .header-right { border-left: none; border-top: 1px solid #eee; padding: 10px 0; margin-top: 15px; text-align: center; width: 100%; }
-            .header-center { margin: 15px 0; }
+            .whiteboard-header { 
+                flex-direction: column; 
+                text-align: center; 
+                height: auto; 
+            }
+            
+            .header-right { 
+                border-left: none; 
+                border-top: 1px solid #eee; 
+                padding: 10px 0; 
+                margin-top: 15px; 
+                text-align: center; 
+                width: 100%; 
+            }
+
+            /* Restoring the original font size */
+            .dropdown-content a, .schematics-link, .line-link {
+                padding: 12px 16px;
+                font-size: 16px; /* Back to original size */
+            }
+
+            /* Adjusting position instead of size to fit the screen */
+            .nested-content, .nested-content-line { 
+                min-width: 160px; 
+                left: 40%; /* Moves the submenu to overlap the parent so it fits on screen */
+                box-shadow: 4px 8px 20px rgba(0,0,0,0.3); /* Stronger shadow to see the overlap */
+                border: 1px solid #ddd;
+            }
+        }
             
             /* Tighten menu width for phones so they don't overflow */
             .dropdown-content { min-width: 130px; }
