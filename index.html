@@ -5,23 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maintenance One</title>
     
-    <style>
-        /* --- General Page Styling & Wallpaper Logic --- */
+   <style>
+        /* --- General Page Styling --- */
         body {
-            background-color: #ffeef2; /* Fallback Pink */
+            background-color: #ffeef2;
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            background-repeat: no-repeat;
-            transition: background-image 1.5s ease-in-out; /* Smooth fade between photos */
+            transition: background-image 1.5s ease-in-out;
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            color: black;
             overflow-x: hidden; 
         }
 
-        /* --- TOP WHITEBOARD HEADER STYLING --- */
         .whiteboard-header {
             background-color: white;
             margin: 15px;
@@ -31,167 +28,53 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 80px;
         }
 
-        .header-left h2 {
-            margin: 0;
-            color: #333;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* --- DESKTOP MENU (Hover to the right) --- */
+        .dropdown { position: relative; margin: 10px 0 0 20px; display: inline-block; }
+        .dropbtn { 
+            background-color: white; padding: 10px 20px; font-size: 16px; 
+            border: none; cursor: pointer; font-weight: bold; border-radius: 5px; 
         }
-        .header-left p {
-            margin: 5px 0 0;
-            color: #888;
-            font-size: 14px;
-        }
-
-        .header-center {
-            text-align: center;
-            flex: 1;
-            margin: 0 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .header-center .quote-label {
-            font-size: 10px;
-            color: #aaa;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-        .header-center .quote-text {
-            color: #007bff; 
-            font-style: italic;
-            font-size: 14px;
-            max-width: 600px;
-            line-height: 1.4;
-        }
-
-        .header-right {
-            font-size: 11px;
-            color: #666;
-            text-align: right;
-            border-left: 1px solid #eee;
-            padding-left: 20px;
-            min-width: 150px;
-        }
-        .info-row { margin-bottom: 4px; }
-        .info-label { color: #aaa; margin-right: 5px; }
-
-        /* --- DROPDOWN & SUBMENU STYLING --- */
-        .dropdown {
-            position: relative; 
-            margin: 10px 0 0 20px; 
-            display: inline-block;
-        }
-
-        .dropbtn {
-            background-color: white; 
-            color: black;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-radius: 5px;
-        }
-        
         .dropdown-content {
-            display: none; 
-            position: absolute; 
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 10; 
-            margin-top: 5px; 
-            border-radius: 5px;
+            display: none; position: absolute; background-color: #f9f9f9;
+            min-width: 200px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 10;
         }
-        
         .show { display: block; }
-        
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-            background-color: #f9f9f9; 
-            white-space: nowrap;
-        }
-
+        .dropdown-content a { color: black; padding: 12px 16px; text-decoration: none; display: block; font-size: 16px; }
         .dropdown-content a:hover { background-color: yellow; }
 
-        /* --- SUBMENU FIX FOR SMARTPHONES --- */
         .nested-dropdown, .nested-dropdown-line { position: relative; }
-        
         .nested-content, .nested-content-line {
-            display: none;
-            position: absolute;
-            left: 100%; 
-            top: 0;
-            background-color: #f1f1f1;
-            min-width: 150px;
-            box-shadow: 2px 8px 16px rgba(0,0,0,0.2);
-            z-index: 30; 
+            display: none; position: absolute; left: 100%; top: 0;
+            background-color: #f1f1f1; min-width: 180px; z-index: 30;
         }
-
         .nested-dropdown:hover > .nested-content,
         .nested-dropdown-line:hover > .nested-content-line { display: block; }
 
-        .schematics-link, .line-link { display: block; padding: 12px 16px; text-decoration: none; color: black; }
-
-        .nested-dropdown:hover > .schematics-link,
-        .nested-dropdown-line:hover > .line-link { background-color: yellow; }
-
-        .disabled-link { color: #ccc !important; pointer-events: none; }
-
-        /* --- MOBILE RESPONSIVE RULES --- */
-       /* --- SMARTPHONE ADJUSTMENTS (Restored Font Size) --- */
+        /* --- SMARTPHONE FIX (Accordion Style) --- */
         @media screen and (max-width: 768px) {
-            .whiteboard-header { 
-                flex-direction: column; 
-                text-align: center; 
-                height: auto; 
+            .whiteboard-header { flex-direction: column; padding: 20px; text-align: center; }
+            .header-right { border-left: none; border-top: 1px solid #eee; margin-top: 15px; width: 100%; text-align: center; }
+            
+            /* Make menus stack vertically instead of sliding right */
+            .nested-content, .nested-content-line {
+                position: relative; /* Change from absolute */
+                left: 0 !important;
+                width: 100%;
+                box-shadow: none;
+                background-color: #ececec;
             }
             
-            .header-right { 
-                border-left: none; 
-                border-top: 1px solid #eee; 
-                padding: 10px 0; 
-                margin-top: 15px; 
-                text-align: center; 
-                width: 100%; 
+            .dropdown-content a, .schematics-link, .line-link {
+                font-size: 16px !important; /* Original size restored */
+                padding: 15px; /* Larger touch area for fingers */
+                border-bottom: 1px solid #ddd;
             }
 
-            /* Restoring the original font size */
-            .dropdown-content a, .schematics-link, .line-link {
-                padding: 12px 16px;
-                font-size: 16px; /* Back to original size */
-            }
-
-            /* Adjusting position instead of size to fit the screen */
-            .nested-content, .nested-content-line { 
-                min-width: 160px; 
-                left: 40%; /* Moves the submenu to overlap the parent so it fits on screen */
-                box-shadow: 4px 8px 20px rgba(0,0,0,0.3); /* Stronger shadow to see the overlap */
-                border: 1px solid #ddd;
-            }
-        }
-            
-            /* Tighten menu width for phones so they don't overflow */
-            .dropdown-content { min-width: 130px; }
-            .nested-content, .nested-content-line { 
-                min-width: 110px; 
-                left: 85%; /* Slight overlap to save space */
-            }
-            .dropdown-content a, .schematics-link, .line-link {
-                padding: 10px 10px;
-                font-size: 13px;
+            .nested-dropdown:hover > .nested-content,
+            .nested-dropdown-line:hover > .nested-content-line {
+                display: block;
             }
         }
     </style>
