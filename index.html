@@ -8,6 +8,18 @@
     <style>
        /* --- General Page Styling --- */
         /* --- General Page Styling --- */
+        <div id="chat-circle" onclick="toggleChat()" style="position: fixed; bottom: 20px; right: 20px; background: #fff; color: #000; padding: 15px; border-radius: 50%; cursor: pointer; box-shadow: 0px 4px 10px rgba(0,0,0,0.3); z-index: 100;">
+  ⚡ Advisor
+</div>
+
+<div id="chat-box" style="display: none; position: fixed; bottom: 80px; right: 20px; width: 300px; height: 400px; background: white; border-radius: 10px; box-shadow: 0px 4px 15px rgba(0,0,0,0.5); z-index: 100; flex-direction: column;">
+  <div style="background: #333; color: white; padding: 10px; border-radius: 10px 10px 0 0;">Electrician Advisor</div>
+  <div id="chat-log" style="flex: 1; padding: 10px; color: black; font-size: 14px; overflow-y: auto;">
+    Hello! Which production line is down?
+  </div>
+  <input type="text" id="user-input" placeholder="Type fault code..." style="padding: 10px; border: none; border-top: 1px solid #ddd; border-radius: 0 0 10px 10px;">
+</div>
+        
         body {
             /* This replaces the pink with your image */
             background-image: url('Japan1.jpg'); 
