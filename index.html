@@ -33,204 +33,42 @@
             min-height: 80px;
         }
 
-        .header-left h2 {
-            margin: 0;
-            color: #333;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .header-left p {
-            margin: 5px 0 0;
-            color: #888;
-            font-size: 14px;
-        }
+        .header-left h2 { margin: 0; color: #333; font-size: 24px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .header-left p { margin: 5px 0 0; color: #888; font-size: 14px; }
 
-        .header-center {
-            text-align: center;
-            flex: 1;
-            margin: 0 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .header-center .quote-label {
-            font-size: 10px;
-            color: #aaa;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-        .header-center .quote-text {
-            color: #007bff; 
-            font-style: italic;
-            font-size: 14px;
-            max-width: 600px;
-            line-height: 1.4;
-        }
+        .header-center { text-align: center; flex: 1; margin: 0 20px; display: flex; flex-direction: column; align-items: center; }
+        .header-center .quote-label { font-size: 10px; color: #aaa; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+        .header-center .quote-text { color: #007bff; font-style: italic; font-size: 14px; max-width: 600px; line-height: 1.4; }
 
-        .header-right {
-            font-size: 11px;
-            color: #666;
-            text-align: right;
-            border-left: 1px solid #eee;
-            padding-left: 20px;
-            min-width: 150px;
-        }
+        .header-right { font-size: 11px; color: #666; text-align: right; border-left: 1px solid #eee; padding-left: 20px; min-width: 150px; }
         .info-row { margin-bottom: 4px; }
         .info-label { color: #aaa; margin-right: 5px; }
 
-        /* --- LEVEL 1 (Home Button) STYLING --- */
-        .dropdown {
-            position: relative; 
-            margin: 10px 0 0 20px;
-            display: inline-block;
-        }
-
-        .dropbtn {
-            background-color: white; 
-            color: black;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-radius: 5px;
-        }
-        
-        .dropdown-content {
-            display: none; 
-            position: absolute; 
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 10; 
-            margin-top: 5px; 
-            border-radius: 5px;
-        }
-        
+        /* --- NAVIGATION MENU STYLING --- */
+        .dropdown { position: relative; margin: 10px 0 0 20px; display: inline-block; }
+        .dropbtn { background-color: white; color: black; padding: 10px 20px; font-size: 16px; border: none; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 5px; }
+        .dropdown-content { display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 100; margin-top: 5px; border-radius: 5px; }
         .show { display: block; }
-        
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-            background-color: #f9f9f9; 
-            white-space: nowrap;
-        }
-
-        .dropdown-content a:hover {
-            background-color: yellow;
-            color: black;
-        }
-
+        .dropdown-content a { color: black; padding: 12px 16px; text-decoration: none; display: block; text-align: left; background-color: #f9f9f9; white-space: nowrap; }
+        .dropdown-content a:hover { background-color: yellow; }
         .disabled-link { color: #ccc !important; pointer-events: none; }
 
-        /* --- NESTED STYLING (Levels 2 & 3) --- */
+        /* Nested Levels (2 & 3) */
         .nested-dropdown, .nested-dropdown-line { position: relative; }
-        
-        .nested-content {
-            display: none;
-            position: absolute;
-            left: 100%; 
-            top: 0;
-            background-color: #f1f1f1;
-            min-width: 150px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 20; 
-        }
-
+        .nested-content { display: none; position: absolute; left: 100%; top: 0; background-color: #f1f1f1; min-width: 150px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 110; }
         .nested-dropdown:hover > .nested-content { display: block; }
-
-        .nested-content-line {
-            display: none; 
-            position: absolute;
-            left: 100%; 
-            top: 0;
-            background-color: #e3e3e3; 
-            min-width: 150px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 30; 
-        }
-
+        .nested-content-line { display: none; position: absolute; left: 100%; top: 0; background-color: #e3e3e3; min-width: 150px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 120; }
         .nested-dropdown-line:hover > .nested-content-line { display: block; }
-        
         .schematics-link, .line-link { display: block; padding: 12px 16px; text-decoration: none; color: black; }
+        .nested-dropdown:hover > .schematics-link, .nested-dropdown-line:hover > .line-link { background-color: yellow; }
 
-        .nested-dropdown:hover > .schematics-link,
-        .nested-dropdown-line:hover > .line-link {
-            background-color: yellow;
-        }
-
-        /* --- ⚡ NEW: AI ADVISOR STYLING --- */
-        #chat-circle {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: white;
-            color: #007bff;
-            padding: 15px 25px;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-            z-index: 2000;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        #chat-box {
-            display: none;
-            position: fixed;
-            bottom: 90px;
-            right: 25px;
-            width: 350px;
-            height: 450px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0px 10px 30px rgba(0,0,0,0.4);
-            z-index: 2000;
-            flex-direction: column;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-        }
-
-        .chat-header {
-            background: #007bff;
-            color: white;
-            padding: 15px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        #chat-log {
-            flex: 1;
-            padding: 15px;
-            color: #333;
-            font-size: 14px;
-            overflow-y: auto;
-            background: #fdfdfd;
-        }
-
-        .chat-input-area {
-            padding: 15px;
-            border-top: 1px solid #eee;
-            display: flex;
-        }
-
-        .chat-input {
-            width: 100%;
-            border: none;
-            outline: none;
-            font-size: 14px;
-        }
-
+        /* --- AI ADVISOR STYLING --- */
+        #chat-circle { position: fixed; bottom: 25px; right: 25px; background: white; color: #007bff; padding: 15px 25px; border-radius: 50px; cursor: pointer; box-shadow: 0px 4px 15px rgba(0,0,0,0.3); z-index: 2000; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        #chat-box { display: none; position: fixed; bottom: 90px; right: 25px; width: 350px; height: 450px; background: white; border-radius: 15px; box-shadow: 0px 10px 30px rgba(0,0,0,0.4); z-index: 2000; flex-direction: column; overflow: hidden; }
+        .chat-header { background: #007bff; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; }
+        #chat-log { flex: 1; padding: 15px; color: #333; font-size: 14px; overflow-y: auto; background: #fdfdfd; }
+        .chat-input-area { padding: 15px; border-top: 1px solid #eee; display: flex; }
+        .chat-input { width: 100%; border: none; outline: none; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -240,12 +78,10 @@
             <h2>Maintenance One</h2>
             <p>To make our team's life easier.</p>
         </div>
-
         <div class="header-center">
             <span class="quote-label">Quote of the Celebrities</span>
             <div id="quote-display" class="quote-text">"Loading inspiration..."</div>
         </div>
-
         <div class="header-right">
             <div class="info-row"><span class="info-label">Version</span> <span style="color: #007bff;">1.0.0</span></div>
             <div class="info-row"><span class="info-label">Managed by</span> Amtopp/ME </div>
@@ -257,6 +93,7 @@
     <div class="dropdown">
         <button onclick="toggleDropdown()" class="dropbtn">Home &#9662;</button>
         <div id="homeDropdown" class="dropdown-content">
+            
             <div class="nested-dropdown">
                 <a href="#" class="schematics-link">Schematics &gt;</a> 
                 <div class="nested-content">
@@ -269,8 +106,57 @@
                             <a href="Line-4-F12-Schematic.pdf">Line 4</a>
                         </div>
                     </div>
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">02 F13 &gt;</a>
+                        <div class="nested-content-line">
+                            <a href="Line-1-F13-Schematic.pdf">Line 1</a>
+                            <a href="Line-2-F13-Schematic.pdf">Line 2</a>
+                            <a href="Line-3-F13-Schematic.pdf">Line 3</a>
+                            <a class="disabled-link">Line 4</a>
+                        </div>
                     </div>
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">03 F16 &gt;</a>
+                        <div class="nested-content-line">
+                            <a href="F16_Line1_Shematics.pdf">Line 1</a>
+                            <a href="F16_Line2_Shematics.pdf">Line 2</a>
+                            <a href="F16_Line3_Shematics.pdf">Line 3</a>
+                            <a href="F16_Line4_Shematics.pdf">Line 4</a>
+                        </div>
+                    </div>
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">04 F201 &gt;</a>
+                        <div class="nested-content-line">
+                            <a class="disabled-link">Line 1</a>
+                            <a href="Line-2-F201-Schematic.pdf">Line 2</a>
+                            <a class="disabled-link">Line 3</a>
+                            <a class="disabled-link">Line 4</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <div class="nested-dropdown">
+                <a href="#" class="schematics-link">I/O Description &gt;</a> 
+                <div class="nested-content">
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">01 F12 &gt;</a>
+                        <div class="nested-content-line">
+                            <a href="F12_Line1_IODescription.pdf">Line 1</a>
+                            <a href="F12_Line2_IODescription.pdf">Line 2</a>
+                        </div>
+                    </div>
+                    <div class="nested-dropdown-line">
+                        <a href="#" class="line-link">02 F13 &gt;</a>
+                        <div class="nested-content-line">
+                            <a href="F13_Line1_IODescription.pdf">Line 1</a>
+                        </div>
+                    </div>
+                    <div class="nested-dropdown-line"><a href="#" class="line-link">03 F16 &gt;</a></div>
+                    <div class="nested-dropdown-line"><a href="#" class="line-link">04 F201 &gt;</a></div>
+                </div>
+            </div>
+
             <a href="calibration.html">Calibration Procedure</a>
             <a href="https://www.youtube.com/watch?v=lPgrQUfbqVE" target="_blank">Training</a>
             <a href="inventory.html">PC Inventory</a>
@@ -278,47 +164,41 @@
         </div>
     </div>
 
-    <div id="chat-circle" onclick="toggleChat()">
-        <span>⚡</span> Advisor
+    <div id="chat-circle" onclick="toggleChat()"><span>⚡</span> Advisor</div>
+    <div id="chat-box">
+        <div class="chat-header"><span>Troubleshooting Advisor</span><span style="cursor:pointer" onclick="toggleChat()">×</span></div>
+        <div id="chat-log"><p><strong>System:</strong> Ready to troubleshoot. Which line is down?</p></div>
+        <div class="chat-input-area"><input type="text" class="chat-input" placeholder="Type fault code here..."></div>
     </div>
 
-    <div id="chat-box">
-        <div class="chat-header">
-            <span>Troubleshooting Advisor</span>
-            <span style="cursor:pointer" onclick="toggleChat()">×</span>
-        </div>
-        <div id="chat-log">
-            <p><strong>System:</strong> Welcome, team. Describe the breakdown or enter a fault code to begin.</p>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" class="chat-input" placeholder="Type your question here...">
+    <div id="aboutModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.6); backdrop-filter: blur(2px);">
+        <div style="background-color:white; margin:5% auto; padding:30px; border-radius:15px; width:90%; max-width:550px;">
+            <h2 style="text-align:center; border-bottom: 2px solid #007bff; padding-bottom: 10px;">About Maintenance One</h2>
+            <p>Maintenance One is a professional document library designed to help electrical teams read documents anywhere via mobile devices.</p>
+            <div style="text-align:center;"><button onclick="closeAbout()" style="padding:10px 30px; background:#007bff; color:white; border:none; border-radius:5px; cursor:pointer;">Close</button></div>
         </div>
     </div>
 
     <script>
-        // Existing logic for quotes and modified date
         document.getElementById('last-modified').textContent = new Date(document.lastModified).toLocaleDateString();
         
-        const quotes = [ "“Knowledge is power.” — Francis Bacon", /* ... rest of your quotes ... */ ];
+        // Simplified quotes array
+        const quotes = ["“Knowledge is power.” — Francis Bacon", "“I didn’t fail. I just found 100 ways to do it wrong.” — Ben Franklin"];
 
-        function toggleDropdown() {
-            document.getElementById("homeDropdown").classList.toggle("show");
+        function toggleDropdown() { document.getElementById("homeDropdown").classList.toggle("show"); }
+        function toggleChat() { 
+            const box = document.getElementById('chat-box');
+            box.style.display = (box.style.display === 'none' || box.style.display === '') ? 'flex' : 'none';
         }
+        function openAbout() { document.getElementById("aboutModal").style.display = "block"; }
+        function closeAbout() { document.getElementById("aboutModal").style.display = "none"; }
 
-        // ⚡ NEW: Toggle Advisor
-        function toggleChat() {
-            const chatBox = document.getElementById('chat-box');
-            chatBox.style.display = (chatBox.style.display === 'none' || chatBox.style.display === '') ? 'flex' : 'none';
-        }
-
-        // Close logic for modal and dropdown
         window.onclick = function(event) {
             if (!event.target.matches('.dropbtn')) {
                 var dropdown = document.getElementById("homeDropdown");
-                if (dropdown && dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
-                }
+                if (dropdown && dropdown.classList.contains('show')) { dropdown.classList.remove('show'); }
             }
+            if (event.target == document.getElementById("aboutModal")) { closeAbout(); }
         }
     </script>
 </body>
